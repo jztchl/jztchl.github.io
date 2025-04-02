@@ -1,0 +1,21 @@
+[
+    {
+      "title": "Music Generation System",
+      "description": [
+        "Designed a multi-model music generation system using TensorFlow and Keras, with separate models for each genre, supporting both single and multi-instrument compositions.",
+        "Integrated it with a Flutter app via a Flask API, enabling user authentication and custom music creation."
+      ],
+      "image_url": "https://raw.githubusercontent.com/jztchl/Harmony-Forge/refs/heads/main/icon.png",
+      "project_url": "https://github.com/jztchl/Harmony-Forge/"
+    },
+    {
+      "title": "Weapon Detection System",
+      "description": [
+        "Built a real-time weapon detection system using Python, OpenCV, and a custom-trained YOLO model, deployed as a Tkinter application installable on multiple devices.",
+        "Integrated it with a Django server to send real-time alerts, enabling security centers or law enforcement to receive location data and detected images."
+      ],
+      "image_url": "https://example.com/weapon-detection.png",
+      "project_url": "https://github.com/yourusername/weapon-detection"
+    }
+  ]
+  

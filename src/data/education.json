@@ -1,0 +1,17 @@
+[
+    {
+      "institution": "KANNUR UNIVERSITY",
+      "location": "Kannur, Kerala",
+      "degree": "Master of Computer Applications",
+      "cgpa": "8.27 / 10.0",
+      "completion_date": "Aug 2024"
+    },
+    {
+      "institution": "INDIRA GANDHI NATIONAL OPEN UNIVERSITY",
+      "location": "Kannur, Kerala",
+      "degree": "Bachelor of Computer Applications",
+      "percentage": "65 %",
+      "completion_date": "Dec 2021"
+    }
+  ]
+  

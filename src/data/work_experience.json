@@ -1,0 +1,35 @@
+[
+    {
+      "company": "TiQR Labs Private Limited",
+      "location": "Kannur, Kerala",
+      "role": "Software Engineer - Backend",
+      "duration": "Sep 2024 - Present",
+      "responsibilities": [
+        "Designed and developed scalable backend services and RESTful APIs using Python and Django, improving system performance by optimizing data flow.",
+        "Collaborated with cross-functional teams to gather requirements and deliver secure, high-quality software solutions, reducing bug occurrences by 15 %.",
+        "Collaborated with front-end developers to ensure seamless API integration, optimizing data flow and reducing integration issues."
+      ]
+    },
+    {
+      "company": "Change Payments",
+      "location": "Kannur, Kerala",
+      "role": "Project Intern",
+      "duration": "Jul 2022 - Sep 2022",
+      "responsibilities": [
+        "Built a smart billing system with dynamic discounts and a vaccine status scanner, enhancing retail efficiency.",
+        "Developed flexible discount rules to improve shopkeeper engagement and sales.",
+        "Optimized system performance through rigorous testing and debugging for a smoother user experience."
+      ]
+    },
+    {
+      "company": "Business Technology Research & Analytics Centre",
+      "location": "Kannur, Kerala",
+      "role": "Python Developer Trainee",
+      "duration": "Nov 2021 - Apr 2022",
+      "responsibilities": [
+        "Assisted in developing web applications using Python and Django.",
+        "Gained practical experience in web development and software implementation."
+      ]
+    }
+  ]
+  
