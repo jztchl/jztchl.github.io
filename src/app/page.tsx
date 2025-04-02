@@ -5,6 +5,7 @@ import education from '../data/education.json';
 import workExperience from '../data/work_experience.json';
 import projects from '../data/projects.json';
 import additionalInfo from '../data/additional_info.json';
+import Image from 'next/image';
 
 
 const techIcons = [
@@ -48,12 +49,24 @@ const predefinedPositions = [
   { x: 50, y: 40, size: 65, speed: 25, delay: 1.5 }
 ];
 
+type Position = {
+  x: number;
+  y: number;
+};
+
+
+
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState<Position>({ x: 0, y: 0 });
   const [showNav, setShowNav] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const contentRef = useRef(null);
+
+
+
+
+
 
   useEffect(() => {
     setIsClient(true);
@@ -61,7 +74,7 @@ export default function Home() {
     const handleScroll = () => {
       const sections = ["home", "education", "experience", "projects", "skills"];
       const scrollPosition = window.scrollY + 100;
-
+  
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= scrollPosition) {
@@ -70,29 +83,30 @@ export default function Home() {
         }
       }
     };
-
-    const handleMouseMove = (e) => {
-   
+  
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition(prev => {
-        const distance = Math.sqrt(Math.pow(e.clientX - prev.x, 2) + Math.pow(e.clientY - prev.y, 2));
-        if (distance > 20) { // Only update if mouse moved significantly
+        const distance = Math.sqrt(
+          Math.pow(e.clientX - prev.x, 2) + 
+          Math.pow(e.clientY - prev.y, 2)
+        );
+        if (distance > 20) {
           return { x: e.clientX, y: e.clientY };
         }
         return prev;
       });
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
-
+  
     handleScroll();
-
+  
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-
   const ParallaxBackground = () => {
     const animationStyles = predefinedPositions.map((pos, i) => ({
       width: `${pos.size}px`,
@@ -189,11 +203,14 @@ export default function Home() {
               filter: `drop-shadow(0 0 8px ${el.glowColor})`
             }}
           >
-            <img 
-              src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${el.icon}/${el.icon}-original.svg`} 
-              alt={el.icon}
-              className="w-full h-full object-contain"
-            />
+            <Image 
+  src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${el.icon}/${el.icon}-original.svg`} 
+  alt={el.icon}
+  width={el.size}
+  height={el.size}
+  className="w-full h-full object-contain"
+  unoptimized // Add this prop for external images
+/>
             <style jsx>{`
               @keyframes floatTech${i} {
                 0% { transform: translate(-50%, -50%) rotate(${el.rotation}deg) translateY(0); }
@@ -311,17 +328,21 @@ export default function Home() {
     );
   };
 
-  const CursorTrail = () => {
-    const [trail, setTrail] = useState([]);
-
+  interface CursorTrailProps {
+    mousePosition: Position;
+  }
+  
+  const CursorTrail = ({ mousePosition }: CursorTrailProps) => {
+    const [trail, setTrail] = useState<Position[]>([]);
+  
     useEffect(() => {
       const interval = setInterval(() => {
         setTrail(prev => [mousePosition, ...prev.slice(0, 5)]);
       }, 50);
-
+  
       return () => clearInterval(interval);
     }, [mousePosition]);
-
+  
     return (
       <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden hidden md:block">
         {trail.map((pos, i) => (
@@ -342,11 +363,28 @@ export default function Home() {
     );
   };
 
-  const AnimatedCard = ({ children, className, delay = 0 }) => {
-    const [isVisible, setIsVisible] = useState(false);
-    const cardRef = useRef(null);
 
+  interface AnimatedCardProps {
+    children: React.ReactNode;
+    className?: string;
+    delay?: number;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
+  }
+  
+  const AnimatedCard = ({ 
+    children, 
+    className = '', 
+    delay = 0,
+    onMouseEnter,
+    onMouseLeave
+  }: AnimatedCardProps) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const cardRef = useRef<HTMLDivElement>(null);
+  
     useEffect(() => {
+      const currentRef = cardRef.current;
+      
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -356,18 +394,18 @@ export default function Home() {
         },
         { threshold: 0.1 }
       );
-
-      if (cardRef.current) {
-        observer.observe(cardRef.current);
+  
+      if (currentRef) {
+        observer.observe(currentRef);
       }
-
+  
       return () => {
-        if (cardRef.current) {
-          observer.unobserve(cardRef.current);
+        if (currentRef) {
+          observer.unobserve(currentRef);
         }
       };
     }, []);
-
+  
     return (
       <div
         ref={cardRef}
@@ -377,15 +415,29 @@ export default function Home() {
             : 'opacity-0 translate-y-12'
         }`}
         style={{ transitionDelay: `${delay}ms` }}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         {children}
       </div>
     );
   };
 
-  const ProjectCard = ({ project, index }) => {
+  interface Project {
+    title: string;
+    image_url: string;
+    description: string[];
+    project_url: string;
+  }
+  
+  interface ProjectCardProps {
+    project: Project;
+    index: number;
+  }
+  
+  const ProjectCard = ({ project, index }: ProjectCardProps) => {
     const [isHovered, setIsHovered] = useState(false);
-
+  
     return (
       <AnimatedCard
         delay={index * 100}
@@ -395,20 +447,23 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/50 to-blue-900/50 opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay"></div>
-
+  
         <div className="h-48 w-full overflow-hidden">
-          <img
-            src={project.image_url}
-            alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-          />
+          <Image
+  src={project.image_url}
+  alt={project.title}
+  width={400}
+  height={300}
+  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+  unoptimized // Add this prop for external images
+/>
         </div>
-
+  
         <div className="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/70 to-transparent">
           <h3 className="text-xl font-bold text-white mb-2 transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:text-cyan-300">
             {project.title}
           </h3>
-
+  
           <div className={`transition-all duration-500 ease-out overflow-hidden ${isHovered ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}>
             <ul className="text-white/90 text-sm space-y-1 mb-4">
               {project.description.map((desc, i) => (
@@ -418,7 +473,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-
+  
             <a
               href={project.project_url}
               target="_blank"
@@ -436,15 +491,28 @@ export default function Home() {
       </AnimatedCard>
     );
   };
-
-  const TimelineItem = ({ job, index, isLast }) => {
+  
+  interface Job {
+    role: string;
+    company: string;
+    duration: string;
+    responsibilities: string[];
+  }
+  
+  interface TimelineItemProps {
+    job: Job;
+    index: number;
+    isLast: boolean;
+  }
+  
+  const TimelineItem = ({ job, index, isLast }: TimelineItemProps) => {
     return (
       <AnimatedCard delay={index * 150} className="relative pl-6 pb-8">
         {!isLast && (
           <div className="absolute left-2 top-0 h-full w-0.5 bg-gradient-to-b from-cyan-400 to-blue-500 shadow-[0_0_10px_rgba(34,211,238,0.3)]"></div>
         )}
         <div className="absolute left-0 top-1 w-4 h-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 shadow-lg shadow-cyan-600/30"></div>
-
+  
         <div className="bg-gray-900/70 backdrop-blur-md rounded-lg p-5 border border-gray-800 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)]">
           <h3 className="text-lg font-bold text-white">{job.role}</h3>
           <h4 className="text-cyan-300 mb-1">{job.company}</h4>
@@ -462,7 +530,19 @@ export default function Home() {
     );
   };
 
-  const EducationCard = ({ edu, index }) => {
+  interface Education {
+    degree: string;
+    institution: string;
+    location: string;
+    completion_date: string;
+  }
+  
+  interface EducationCardProps {
+    edu: Education;
+    index: number;
+  }
+  
+  const EducationCard = ({ edu, index }: EducationCardProps) => {
     return (
       <AnimatedCard
         delay={index * 150}
@@ -477,7 +557,12 @@ export default function Home() {
     );
   };
 
-  const SkillTag = ({ skill, index }) => {
+  interface SkillTagProps {
+    skill: string;
+    index: number;
+  }
+  
+  const SkillTag = ({ skill, index }: SkillTagProps) => {
     return (
       <AnimatedCard
         delay={index * 50}
@@ -487,7 +572,6 @@ export default function Home() {
       </AnimatedCard>
     );
   };
-
   const Header = () => {
     return (
       <section id="home" className="min-h-screen flex items-center justify-center pt-16 pb-32 relative">
@@ -610,7 +694,7 @@ export default function Home() {
       <ParallaxBackground />
       <FloatingTechElements />
       <Navigation />
-      <CursorTrail />
+      <CursorTrail mousePosition={mousePosition} />
 
       <div className="max-w-5xl mx-auto px-4 py-8 relative">
         <Header />
