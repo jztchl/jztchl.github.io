@@ -8,6 +8,7 @@ import additionalInfo from '../data/additional_info.json';
 import Image from 'next/image';
 import Head from 'next/head';
 
+
 const techIcons = [
   'git', 'github', 'vscode','react', 'python', 'javascript', 'typescript', 'nodejs', 
   'html5', 'css3',  'figma',
@@ -727,7 +728,6 @@ export default function Home() {
 
   return (<>
     <Head>
-    <title>{`${personalInfo.name} - Portfolio`}</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0a0a" />
