@@ -6,7 +6,7 @@ import workExperience from '../data/work_experience.json';
 import projects from '../data/projects.json';
 import additionalInfo from '../data/additional_info.json';
 import Image from 'next/image';
-
+import Head from 'next/head';
 
 const techIcons = [
   'git', 'github', 'vscode','react', 'python', 'javascript', 'typescript', 'nodejs', 
@@ -14,7 +14,19 @@ const techIcons = [
   'djangorestframework'
 ];
 
-
+const META = {
+  title: `${personalInfo.name} | ${personalInfo.title} Portfolio`,
+  description: `${personalInfo.bio} | Specializing in ${additionalInfo.technical_skills.join(', ')}`,
+  url: "https://jztchl.vercel.app",
+  image: "/images/social-preview.png",
+  keywords: [
+    ...additionalInfo.technical_skills,
+    personalInfo.title,
+    "portfolio",
+    "developer",
+    "software engineer"
+  ].join(', ')
+};
 const codeSnippets = [
   `from django.http import HttpResponse\n\ndef hello_world(request):\n    return HttpResponse("Hello, Django World!")`,
   `from django.db import models\n\nclass BlogPost(models.Model):\n    title = models.CharField(max_length=200)\n    content = models.TextField()\n    published_date = models.DateTimeField(auto_now_add=True)\n\n    def __str__(self):\n        return self.title`,
@@ -65,8 +77,28 @@ export default function Home() {
 
 
 
-
-
+  function throttle<F extends (event: MouseEvent) => void>(
+    func: F,
+    limit: number
+  ): (this: Window, event: MouseEvent) => void {
+    let lastFunc: ReturnType<typeof setTimeout>;
+    let lastRan: number;
+  
+    return function(this: Window, ...args: [MouseEvent]) {
+      if (!lastRan) {
+        func.apply(this, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(() => {
+          if (Date.now() - lastRan >= limit) {
+            func.apply(this, args);
+            lastRan = Date.now();
+          }
+        }, limit - (Date.now() - lastRan));
+      }
+    };
+  }
 
   useEffect(() => {
     setIsClient(true);
@@ -84,27 +116,31 @@ export default function Home() {
       }
     };
   
+ 
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition(prev => {
-        const distance = Math.sqrt(
-          Math.pow(e.clientX - prev.x, 2) + 
-          Math.pow(e.clientY - prev.y, 2)
-        );
-        if (distance > 20) {
+
+        const dx = e.clientX - prev.x;
+        const dy = e.clientY - prev.y;
+        const distanceSquared = dx * dx + dy * dy;
+        
+        if (distanceSquared > 100) { 
           return { x: e.clientX, y: e.clientY };
         }
         return prev;
       });
     };
   
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    const optimizedMouseMove = throttle(handleMouseMove, 50); 
+    window.addEventListener('mousemove', optimizedMouseMove, { passive: true });
   
     handleScroll();
   
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', optimizedMouseMove);
     };
   }, []);
   const ParallaxBackground = () => {
@@ -209,7 +245,7 @@ export default function Home() {
   width={el.size}
   height={el.size}
   className="w-full h-full object-contain"
-  unoptimized // Add this prop for external images
+  unoptimized 
 />
             <style jsx>{`
               @keyframes floatTech${i} {
@@ -689,7 +725,70 @@ export default function Home() {
     );
   };
 
-  return (
+  return (<>
+    <Head>
+    <title>{`${personalInfo.name} - Portfolio`}</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href={META.url} />
+    {/* Primary Meta Tags */}
+    <title>{META.title}</title>
+    <meta name="title" content={META.title} />
+    <meta name="description" content={META.description} />
+    <meta name="keywords" content={META.keywords} />
+    <meta name="author" content={personalInfo.name} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    {/* Open Graph / Facebook */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={META.url} />
+    <meta property="og:title" content={META.title} />
+    <meta property="og:description" content={META.description} />
+    <meta property="og:image" content={META.image} />
+    
+    {/* Twitter */}
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={META.url} />
+    <meta property="twitter:title" content={META.title} />
+    <meta property="twitter:description" content={META.description} />
+    <meta property="twitter:image" content={META.image} />
+    
+    {/* Canonical URL */}
+    <link rel="canonical" href={META.url} />
+    
+    {/* Favicons */}
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    {/* Theme Color */}
+    <meta name="theme-color" content="#0a0a0a" />
+    
+    {/* Preconnect for CDN */}
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    
+    {/* Structured Data */}
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": personalInfo.name,
+        "jobTitle": personalInfo.title,
+        "url": META.url,
+        "sameAs": [
+          "https://github.com/jztchl",
+          "https://linkedin.com/in/kmvishnu"
+        ],
+        "description": META.description
+      })}
+    </script>
+  </Head>
+
+  
+    
     <div className="text-white" ref={contentRef}>
       <ParallaxBackground />
       <FloatingTechElements />
@@ -700,7 +799,7 @@ export default function Home() {
         <Header />
 
         {/* Education Section */}
-        <section id="education" className="my-24 scroll-mt-16 relative">
+        <section id="education" aria-label="Education" className="my-24 scroll-mt-16 relative">
           <div className="absolute -top-20 -left-20 w-40 h-40 bg-cyan-400/10 rounded-full blur-3xl -z-10"></div>
           <h2 className="text-3xl font-bold mb-12 text-center">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-300 neon-text">Education</span>
@@ -714,7 +813,7 @@ export default function Home() {
         </section>
 
         {/* Work Experience Section */}
-        <section id="experience" className="my-24 scroll-mt-16 relative">
+        <section id="experience" ria-label="Work Experience" className="my-24 scroll-mt-16 relative">
           <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-400/10 rounded-full blur-3xl -z-10"></div>
           <h2 className="text-3xl font-bold mb-12 text-center">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-300 neon-text">Work Experience</span>
@@ -733,7 +832,7 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="my-24 scroll-mt-16 relative">
+        <section id="projects" aria-label="Projects" className="my-24 scroll-mt-16 relative">
           <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-blue-400/10 rounded-full blur-3xl -z-10"></div>
           <h2 className="text-3xl font-bold mb-12 text-center">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-300 neon-text">Projects</span>
@@ -747,7 +846,7 @@ export default function Home() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="my-24 scroll-mt-16 relative">
+        <section id="skills" aria-label="Skills" className="my-24 scroll-mt-16 relative">
           <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-emerald-400/10 rounded-full blur-3xl -z-10"></div>
           <h2 className="text-3xl font-bold mb-12 text-center">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-300 neon-text">Skills & Additional Info</span>
@@ -785,7 +884,7 @@ export default function Home() {
 
         <footer className="text-center text-white/60 py-12 mt-16 border-t border-gray-800 relative">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent"></div>
-          <p>© {new Date().getFullYear()} {personalInfo.name} | Interactive Resume</p>
+          <p>© {new Date().getFullYear()} {personalInfo.name} | Jztchl Resume</p>
           <div className="flex justify-center gap-4 mt-4">
             <a
               href="https://github.com/jztchl"
@@ -841,5 +940,6 @@ export default function Home() {
         }
       `}</style>
     </div>
+    </>
   );
 }
