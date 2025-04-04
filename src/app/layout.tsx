@@ -21,9 +21,14 @@ export const metadata = {
   keywords: [
     ...additionalInfo.technical_skills,
     personalInfo.title,
+    personalInfo.location,
+    "jztchl",
+    "django",
+    "python",
     "portfolio",
     "developer",
     "software engineer",
+    "tiqr"
   ].join(", "),
   openGraph: {
     title: `${personalInfo.name} | ${personalInfo.title} Portfolio`,
