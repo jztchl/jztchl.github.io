@@ -6,7 +6,6 @@ import workExperience from '../data/work_experience.json';
 import projects from '../data/projects.json';
 import additionalInfo from '../data/additional_info.json';
 import Image from 'next/image';
-import Head from 'next/head';
 
 
 const techIcons = [
@@ -15,19 +14,6 @@ const techIcons = [
   'djangorestframework'
 ];
 
-const META = {
-  title: `${personalInfo.name} | ${personalInfo.title} Portfolio`,
-  description: `${personalInfo.bio} | Specializing in ${additionalInfo.technical_skills.join(', ')}`,
-  url: "https://jztchl.vercel.app",
-  image: "/images/social-preview.png",
-  keywords: [
-    ...additionalInfo.technical_skills,
-    personalInfo.title,
-    "portfolio",
-    "developer",
-    "software engineer"
-  ].join(', ')
-};
 const codeSnippets = [
   `from django.http import HttpResponse\n\ndef hello_world(request):\n    return HttpResponse("Hello, Django World!")`,
   `from django.db import models\n\nclass BlogPost(models.Model):\n    title = models.CharField(max_length=200)\n    content = models.TextField()\n    published_date = models.DateTimeField(auto_now_add=True)\n\n    def __str__(self):\n        return self.title`,
@@ -727,65 +713,7 @@ export default function Home() {
   };
 
   return (<>
-    <Head>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a0a0a" />
-    <link rel="canonical" href={META.url} />
-    {/* Primary Meta Tags */}
-    <title>{META.title}</title>
-    <meta name="title" content={META.title} />
-    <meta name="description" content={META.description} />
-    <meta name="keywords" content={META.keywords} />
-    <meta name="author" content={personalInfo.name} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    {/* Open Graph / Facebook */}
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={META.url} />
-    <meta property="og:title" content={META.title} />
-    <meta property="og:description" content={META.description} />
-    <meta property="og:image" content={META.image} />
-    
-    {/* Twitter */}
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={META.url} />
-    <meta property="twitter:title" content={META.title} />
-    <meta property="twitter:description" content={META.description} />
-    <meta property="twitter:image" content={META.image} />
-    
-    {/* Canonical URL */}
-    <link rel="canonical" href={META.url} />
-    
-    {/* Favicons */}
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    
-    {/* Theme Color */}
-    <meta name="theme-color" content="#0a0a0a" />
-    
-    {/* Preconnect for CDN */}
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    
-    {/* Structured Data */}
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": personalInfo.name,
-        "jobTitle": personalInfo.title,
-        "url": META.url,
-        "sameAs": [
-          "https://github.com/jztchl",
-          "https://linkedin.com/in/kmvishnu"
-        ],
-        "description": META.description
-      })}
-    </script>
-  </Head>
+
 
   
     
