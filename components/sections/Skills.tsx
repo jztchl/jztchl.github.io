@@ -21,25 +21,25 @@ const skillCategories = [
     title: 'Web Technologies',
     icon: Globe,
     color: 'green',
-    skills: ['Responsive Design', 'PWA', 'SEO', 'Web Performance', 'Accessibility', 'Browser APIs']
+    skills: ['PWA', 'SEO', 'Web Performance', 'Accessibility', 'Browser APIs']
   },
   {
     title: 'Mobile Development',
     icon: Smartphone,
     color: 'purple',
-    skills: ['React Native', 'Flutter', 'iOS', 'Android', 'Cross-platform', 'Mobile UI/UX']
+    skills: ['Flutter']
   },
   {
     title: 'DevOps & Cloud',
     icon: Cloud,
     color: 'orange',
-    skills: ['AWS', 'Docker', 'CI/CD', 'Vercel', 'Netlify', 'Linux', 'Monitoring']
+    skills: ['Docker', 'CI/CD', 'Vercel', 'Netlify', 'Linux', 'Monitoring']
   },
   {
     title: 'Tools & Workflow',
     icon: GitBranch,
     color: 'pink',
-    skills: ['Git', 'GitHub', 'VS Code', 'Figma', 'Jira', 'Agile', 'Testing']
+    skills: ['Git', 'GitHub', 'VS Code', 'Jira', 'Agile', 'Testing', 'Retool']
   }
 ];
 
