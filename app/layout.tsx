@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: 'Vishnu KM Portfolio',
     images: [
       {
-        url: 'https://jztchl.vercel.app/avatar.jpg',
+        url: 'https://jztchl.vercel.app/avatar.jpeg',
         width: 1200,
         height: 630,
         alt: 'Vishnu KM | Full Stack Developer Portfolio',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: 'Vishnu KM | Full Stack Developer & Software Engineer',
     description: 'Browse the professional portfolio of Vishnu KM, featuring cutting-edge web solutions built with React, Django, and more.',
     creator: '@jztchl',
-    images: ['https://jztchl.vercel.app/avatar.jpg'],
+    images: ['https://jztchl.vercel.app/avatar.jpeg'],
   },
 };
 
@@ -67,7 +67,7 @@ export default function RootLayout({
   "@type": "Person",
   "name": "Vishnu KM",
   "url": "https://jztchl.vercel.app",
-  "image": "https://jztchl.vercel.app/avatar.jpg",
+  "image": "https://jztchl.vercel.app/avatar.jpeg",
   "sameAs": [
     "https://github.com/jztchl",
     "https://linkedin.com/in/jztchl",
