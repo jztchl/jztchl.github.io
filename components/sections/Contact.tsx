@@ -18,8 +18,22 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+    fetch('https://formsubmit.co/2f9590248025a54c41cf9c4fec51dfcf ', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+    
     console.log('Form submitted:', formData);
+    // setFormData({
+    //   name: '',
+    //   email: '',
+    //   subject: '',
+    //   message: ''
+    // });
+
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
