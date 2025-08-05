@@ -31,11 +31,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Vishnu KM | Full Stack Developer & Software Engineer',
     description: 'Discover modern web projects by Vishnu KM using React, Next.js, Django, and Node.js. Built for performance, scalability, and creativity.',
-    url: 'https://jztchl.vercel.app',
+    url: 'https://vishnukm.vercel.app',
     siteName: 'Vishnu KM Portfolio',
     images: [
       {
-        url: 'https://jztchl.vercel.app/avatar.jpeg',
+        url: 'https://vishnukm.vercel.app/avatar.jpeg',
         width: 1200,
         height: 630,
         alt: 'Vishnu KM | Full Stack Developer Portfolio',
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Vishnu KM | Full Stack Developer & Software Engineer',
     description: 'Browse the professional portfolio of Vishnu KM, featuring cutting-edge web solutions built with React, Django, and more.',
-    creator: '@jztchl',
-    images: ['https://jztchl.vercel.app/avatar.jpeg'],
+    creator: '@vishnukm',
+    images: ['https://vishnukm.vercel.app/avatar.jpeg'],
   },
 };
 
@@ -66,12 +66,12 @@ export default function RootLayout({
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Vishnu KM",
-  "url": "https://jztchl.vercel.app",
-  "image": "https://jztchl.vercel.app/avatar.jpeg",
+  "url": "https://vishnukm.vercel.app",
+  "image": "https://vishnukm.vercel.app/avatar.jpeg",
   "sameAs": [
     "https://github.com/jztchl",
-    "https://linkedin.com/in/jztchl",
-    "mailto:jztchl@gmail.com"
+    "https://linkedin.com/in/kmvishnu",
+    "mailto:kmvishnu625@gmail.com"
   ],
   "jobTitle": "Full Stack Developer",
   "worksFor": {
