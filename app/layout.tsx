@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://vishnukm.vercel.app'),
   title: 'Vishnu KM | Full Stack Developer & Software Engineer',
   description: 'Professional portfolio of Vishnu KM, a results-driven Full Stack Developer with expertise in React, Next.js, Django, and Node.js. Showcasing innovative web solutions, real-world projects, and scalable software architecture.',
   keywords: [

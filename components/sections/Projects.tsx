@@ -182,12 +182,16 @@ export default function Projects() {
                   </div>
 
                   <div className="flex space-x-2">
+                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer"> 
                     <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white p-2">
                       <Github className="w-4 h-4" />
                     </Button>
+                    </Link>
+                    <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer"> 
                     <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white p-2">
                       <ExternalLink className="w-4 h-4" />
                     </Button>
+                    </Link>
                   </div>
                 </div>
               </Card>
