@@ -3,61 +3,82 @@
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Building, Calendar, GraduationCap } from 'lucide-react';
-
+import Link from 'next/link';
 const experiences = [
   {
-    title: 'Senior Software Engineer',
-    company: 'Tech Innovations Inc.',
-    period: '2022 - Present',
-    location: 'Remote',
-    description: 'Leading full-stack development of enterprise applications, mentoring junior developers, and implementing best practices for scalable architecture.',
-    achievements: [
-      'Improved application performance by 40%',
-      'Led team of 5 developers',
-      'Implemented CI/CD pipeline reducing deployment time by 60%'
-    ],
-    technologies: ['React', 'Node.js', 'AWS', 'TypeScript', 'PostgreSQL']
-  },
-  {
-    title: 'Full Stack Developer',
-    company: 'Digital Solutions Ltd.',
-    period: '2021 - 2022',
+    title: 'Software Engineer -Backend ',
+    company: 'TiQR Labs Private Limited',
+    period: 'Sep 2024 - Present',
     location: 'Hybrid',
-    description: 'Developed and maintained web applications using modern JavaScript frameworks, collaborated with cross-functional teams.',
+    description: 'Designed and developed scalable backend services and RESTful APIs using Python and Django, working closely with cross-functional teams to deliver secure, high-quality solutions. Collaborated with front-end developers to ensure smooth API integration and system reliability',
     achievements: [
-      'Built 15+ responsive web applications',
-      'Reduced load times by 50%',
-      'Integrated payment systems and APIs'
+     'Enhanced system performance by optimizing backend data flow and reducing latency.',
+    'Lowered bug rate by 15% through collaborative debugging and proactive testing strategies.',
+    'Improved API reliability by refining response structure and syncing closely with frontend teams.'
     ],
-    technologies: ['Vue.js', 'Express.js', 'MongoDB', 'Docker']
+    technologies: ['Python', 'Django','PostgreSQL','REST APIs','Retool']
   },
   {
-    title: 'Junior Developer',
-    company: 'StartUp Ventures',
-    period: '2020 - 2021',
-    location: 'On-site',
-    description: 'Started career building frontend components and learning backend technologies while contributing to various client projects.',
+    title: 'Project Intern ',
+    company: 'CHANGE PAYMENTS',
+    period: 'Jul 2022 - Sep 2022 ',
+    location: 'Remote',
+    description: 'Worked as a Project Intern to build a smart billing system aimed at improving retail efficiency. Integrated dynamic discount logic and a vaccine status scanner to streamline customer interaction and checkout processes.',
     achievements: [
-      'Completed 20+ projects successfully',
-      'Learned multiple programming languages',
-      'Received Employee of the Month award'
+     'Implemented flexible discount rules to boost shopkeeper engagement and drive sales.',
+    'Improved system performance through testing and debugging for a smoother experience.',
+    'Built a real-world solution combining automation and health compliance for retail.'
     ],
-    technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL']
+    technologies: ['Django', 'Django rest framework', 'MySQL', 'JavaScript']
+  },
+  {
+    title: 'Python Developer Trainee ',
+    company: 'BUSINESS TECHNOLOGY RESEARCH & ANALYTICS CENTRE',
+    period: 'Nov 2021-Apr 2022 ',
+    location: 'On-site',
+    description: 'Contributed to the development of web applications using Python and Django, while gaining hands-on experience in real-world software implementation and backend development practices.',
+    achievements: [
+      'Assisted in building and maintaining Django-based web applications.',
+      'Gained practical experience in backend logic, database operations, and debugging.',
+      'Improved understanding of development workflows by collaborating with experienced developers.'
+    ],
+    technologies: ['Python', 'Django', 'HTML', 'CSS', 'JavaScript', 'MySQL']
   }
 ];
 
 const education = [
   {
-    degree: 'Bachelor of Computer Science',
-    institution: 'University of Technology',
-    period: '2016 - 2020',
-    description: 'Focused on software engineering, algorithms, and data structures. Graduated with honors.',
+    degree: 'Master of Computer Application',
+    institution: 'Kannur University',
+    period: '2022 - 2024',
+    description: 'Focused on software engineering, algorithms, and data structures.',
     achievements: [
-      'GPA: 3.8/4.0',
-      'Dean\'s List for 3 semesters',
-      'Computer Science Society President'
+      'GPA: 8.268/10'
+    ]
+  },
+
+  {
+    degree: 'Bachelor of Computer Application',
+    institution: 'Indira Gandhi National Open University',
+    period: '2018 - 2021',
+    description: 'Focused on software engineering, algorithms, and data structures.',
+    achievements: [
+      'GPA: 65%'
     ]
   }
+];
+
+const certifications = [
+  {
+    title: "REST API ",
+    issuer: "HackerRank",
+    link: "https://www.hackerrank.com/certificates/9a29708aadf4"
+  },
+  {
+    title: "Problem Solving",
+    issuer: "HackerRank",
+    link: "https://www.hackerrank.com/certificates/c7924454d6a1"
+  },
 ];
 
 export default function Experience() {
@@ -164,18 +185,17 @@ export default function Experience() {
             <Card className="bg-slate-800/30 border-slate-700 p-6">
               <h4 className="text-lg font-semibold text-white mb-4">Certifications</h4>
               <div className="space-y-3">
-                <div className="text-slate-300 text-sm">
-                  <div className="font-medium">AWS Certified Developer</div>
-                  <div className="text-slate-400">Amazon Web Services</div>
-                </div>
-                <div className="text-slate-300 text-sm">
-                  <div className="font-medium">Google Cloud Professional</div>
-                  <div className="text-slate-400">Google Cloud Platform</div>
-                </div>
-                <div className="text-slate-300 text-sm">
-                  <div className="font-medium">Meta Frontend Developer</div>
-                  <div className="text-slate-400">Meta (Facebook)</div>
-                </div>
+              {certifications.map((cert, index) => (
+    <div key={index} className="text-slate-300 text-sm">
+      <div className="flex items-center gap-2">
+        <span className="font-medium">{cert.title}</span>
+        <Link href={cert.link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
+          view
+        </Link>
+      </div>
+      <div className="text-slate-400">{cert.issuer}</div>
+    </div>
+  ))}
               </div>
             </Card>
           </div>
