@@ -16,24 +16,35 @@ export default function Contact() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    fetch('https://formsubmit.co/2f9590248025a54c41cf9c4fec51dfcf ', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    });
-    
-    console.log('Form submitted:', formData);
-    // setFormData({
-    //   name: '',
-    //   email: '',
-    //   subject: '',
-    //   message: ''
-    // });
-
+    try {
+      const response = await fetch('https://formsubmit.co/2f9590248025a54c41cf9c4fec51dfcf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json();
+      
+      if (response.ok) {
+        console.log('Form submitted successfully:', data);
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        alert('Thank you for your message! We will get back to you soon.');
+      } else {
+        console.error('Form submission failed:', data);
+        alert('There was an error submitting the form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting the form. Please try again later.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
