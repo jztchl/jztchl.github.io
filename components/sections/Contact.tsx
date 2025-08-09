@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Resend } from 'resend';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,24 +17,32 @@ export default function Contact() {
     message: ''
   });
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-        await fetch('https://formsubmit.co/2f9590248025a54c41cf9c4fec51dfcf', {
+      const response = await fetch('/api/send_email', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-        alert('Thank you for your message! We will get back to you soon.');
-    
+  
+      if (!response.ok) throw new Error('Failed to send message');
+      
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+      alert('Thank you for your message! We will get back to you soon.');
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('There was an error submitting the form. Please try again later.');
