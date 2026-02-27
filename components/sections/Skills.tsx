@@ -9,13 +9,13 @@ const skillCategories = [
     title: 'Frontend Development',
     icon: Code2,
     color: 'blue',
-    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3', 'JavaScript']
+    skills: ['React', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3', 'JavaScript']
   },
   {
     title: 'Backend Development',
     icon: Database,
     color: 'cyan',
-    skills: ['Node.js', 'Express.js', 'Python', 'PostgreSQL', 'MongoDB', 'REST APIs', 'GraphQL']
+    skills: [ 'Python','Django', 'DRF', 'FastAPI', 'Celery', 'Redis', 'PostgreSQL', 'REST APIs', ]
   },
   {
     title: 'Web Technologies',
