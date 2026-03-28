@@ -1,28 +1,26 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import SnowBackground from '@/components/SnowBackground';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vishnukm.vercel.app'),
-  title: 'Vishnu KM | Full Stack Developer | Backend & Frontend Expert',
+  title: 'Vishnu KM | Backend Engineer | Python - Django - FastAPI - PostgreSQL',
   description:
-    'Vishnu KM is a Full Stack Developer specializing in React, Next.js, Django & Node.js. Serving clients across Kerala, Bangalore, Pune, Hyderabad & beyond with scalable, clean, and innovative web apps.',
+    'Vishnu KM is a Backend Engineer specializing in Python, Django, FastAPI, and PostgreSQL. Serving clients with scalable REST APIs, reliable notifications, and production-grade architectures.',
   keywords: [
     'Vishnu KM',
-    'Full Stack Developer',
-    'Software Engineer',
-    'React Developer',
-    'Next.js Developer',
-    'Django Developer',
-    'Node.js Developer',
+    'Backend Engineer',
     'Backend Developer',
-    'Frontend Developer',
+    'Python Developer',
+    'Django Developer',
+    'FastAPI Developer',
+    'Software Engineer',
+    'PostgreSQL',
+    'REST API',
     'Kerala Developer',
-    'Bangalore Developer',
-    'Pune Developer',
-    'Hyderabad Developer',
     'Portfolio Website',
   ].join(', '),
   authors: [{ name: 'Vishnu KM', url: 'https://github.com/jztchl' }],
@@ -40,9 +38,9 @@ export const metadata: Metadata = {
   viewport: 'width=device-width, initial-scale=1',
   themeColor: '#0ea5e9',
   openGraph: {
-    title: 'Vishnu KM | Full Stack Developer | Backend & Frontend Expert',
+    title: 'Vishnu KM | Backend Engineer | Python - Django - FastAPI - PostgreSQL',
     description:
-      'Discover modern web projects by Vishnu KM using React, Next.js, Django, and Node.js. Built for performance, scalability, and creativity.',
+      'Backend Engineer specializing in Python, Django, FastAPI, and PostgreSQL. Crafting robust APIs and scalable backend architectures.',
     url: 'https://vishnukm.vercel.app',
     siteName: 'Vishnu KM Portfolio',
     images: [
@@ -50,7 +48,7 @@ export const metadata: Metadata = {
         url: 'https://vishnukm.vercel.app/avatar.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Vishnu KM | Full Stack Developer Portfolio',
+        alt: 'Vishnu KM | Backend Engineer Portfolio',
       },
     ],
     locale: 'en_US',
@@ -58,9 +56,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Vishnu KM | Full Stack Developer | Backend & Frontend Expert',
+    title: 'Vishnu KM | Backend Engineer | Python - Django - FastAPI - PostgreSQL',
     description:
-      'Browse the professional portfolio of Vishnu KM, featuring cutting-edge web solutions built with React, Django, and more.',
+      'Browse the backend portfolio of Vishnu KM, featuring modern systems built with Python, Django, FastAPI, and Postgres.',
     creator: '@vishnukm',
     images: ['https://vishnukm.vercel.app/avatar.jpeg'],
   },
@@ -84,7 +82,7 @@ export default function RootLayout({
           "https://linkedin.com/in/kmvishnu",
           "mailto:kmvishnu625@gmail.com"
         ],
-        jobTitle: "Full Stack Developer & Software Engineer",
+        jobTitle: "Backend Engineer",
         worksFor: {
           "@type": "Organization",
           name: "Freelance / Open Source"
@@ -103,13 +101,13 @@ export default function RootLayout({
         ],
         contactPoint: {
           "@type": "ContactPoint",
-          telephone: "+91-1234567890",
+          telephone: "+91-8547685825",
           contactType: "technical support",
           areaServed: ["IN"],
-          availableLanguage: ["English", "Malayalam"]
+          availableLanguage: ["English", "Malayalam", "Hindi"]
         },
         award: "AWS Certified Solutions Architect – Associate",
-        description: "Full Stack Developer and Software Engineer specializing in scalable web apps, representing tech hubs from Kerala to major Indian cities. Passionate about clean code and innovation."
+        description: "Backend Engineer specializing in Python, Django, FastAPI, and PostgreSQL. From Kannur, building scalable robust architectures and real-time APIs."
       },
       {
         "@type": "BreadcrumbList",
@@ -149,7 +147,24 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased bg-slate-900 text-white min-h-screen relative`}>
+        {/* The beautiful Sonmarg background image */}
+        <div 
+          className="fixed inset-0 z-[-2] bg-[url('/sonmarg.png')] bg-cover bg-center bg-fixed transition-all"
+        />
+        {/* A premium glacier-blue dark overlay to ensure maximum contrast for white ice panels */}
+        <div className="fixed inset-0 z-[-1] bg-gradient-to-b from-slate-950/70 via-slate-900/50 to-slate-950/90 backdrop-blur-[3px] mix-blend-multiply" />
+        
+        {/* Cryotech Frame: Simulates frost freezing on the camera/screen edges */}
+        <div className="fixed inset-0 z-[60] pointer-events-none animate-[frostBreathe_10s_ease-in-out_infinite] mix-blend-screen" />
+        
+        <SnowBackground />
+        
+        <div className="relative z-10 w-full overflow-hidden">
+          {children}
+        </div>
+      </body>
+
     </html>
   );
 }

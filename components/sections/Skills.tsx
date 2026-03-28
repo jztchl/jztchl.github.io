@@ -1,107 +1,138 @@
 'use client';
 
 import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Code2, Database, Globe, Smartphone, Cloud, GitBranch } from 'lucide-react';
+import { Database, Globe, Cloud, GitBranch, Terminal, ShieldAlert } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const skillCategories = [
   {
-    title: 'Frontend Development',
-    icon: Code2,
-    color: 'blue',
-    skills: ['React', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3', 'JavaScript']
+    title: 'Core Languages',
+    icon: Terminal,
+    skills: ['Python', 'JavaScript', 'SQL']
   },
   {
-    title: 'Backend Development',
-    icon: Database,
-    color: 'cyan',
-    skills: [ 'Python','Django', 'DRF', 'FastAPI', 'Celery', 'Redis', 'PostgreSQL', 'REST APIs', ]
-  },
-  {
-    title: 'Web Technologies',
+    title: 'Framework Architect',
     icon: Globe,
-    color: 'green',
-    skills: ['PWA', 'SEO', 'Web Performance', 'Accessibility', 'Browser APIs']
+    skills: ['Django', 'Django REST', 'FastAPI', 'Flask', 'Celery']
   },
   {
-    title: 'Mobile Development',
-    icon: Smartphone,
-    color: 'purple',
-    skills: ['Flutter']
+    title: 'Data Infrastructure',
+    icon: Database,
+    skills: ['PostgreSQL', 'MySQL', 'Redis', 'SQLite']
   },
   {
-    title: 'DevOps & Cloud',
+    title: 'System Optimization',
+    icon: ShieldAlert,
+    skills: ['REST API Design', 'DB Schema', 'Query Optimization', 'pytest']
+  },
+  {
+    title: 'DevOps Context',
     icon: Cloud,
-    color: 'orange',
-    skills: ['Docker', 'CI/CD', 'Vercel', 'Netlify', 'Linux', 'Monitoring']
+    skills: ['Git', 'Docker', 'Linux', 'GitHub Actions']
   },
   {
-    title: 'Tools & Workflow',
+    title: 'Deployment Nodes',
     icon: GitBranch,
-    color: 'pink',
-    skills: ['Git', 'GitHub', 'VS Code', 'Jira', 'Agile', 'Testing', 'Retool']
+    skills: ['Postman', 'Retool', 'Jira']
   }
 ];
 
-const colorMap = {
-  blue: 'text-blue-400',
-  cyan: 'text-cyan-400',
-  green: 'text-green-400',
-  purple: 'text-purple-400',
-  orange: 'text-orange-400',
-  pink: 'text-pink-400'
-};
-
 export default function Skills() {
-  return (
-    <section id="skills" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Skills & Technologies
-            </span>
-          </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern digital solutions
-          </p>
-        </div>
+  const containerVariants: any = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => {
+  const itemVariants: any = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { type: "tween", ease: "easeOut", duration: 0.5 }
+    }
+  };
+
+  return (
+    <section id="skills" className="relative py-24 z-10 lg:py-32 overflow-hidden bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-slate-900/30 via-transparent to-transparent">
+      
+      {/* Background HUD Grid */}
+      <div className="absolute inset-0 pointer-events-none hud-grid opacity-15 mix-blend-screen" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-24"
+        >
+          {/* HUD Frosted Tech Badge */}
+          <div className="inline-flex items-center space-x-3 mb-6 icebrick p-2 px-4 clip-corner shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+            <Terminal className="w-4 h-4 text-cyan-100 drop-shadow-[0_0_5px_white]" />
+            <span className="text-sm font-mono text-cyan-50 tracking-widest uppercase pr-3 font-bold drop-shadow-md">[SYS: DETECTED_PAYLOADS]</span>
+          </div>
+          
+          <h2 className="text-4xl sm:text-5xl font-black font-mono tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] uppercase mb-4">
+            Technical Arsenal
+          </h2>
+          <div className="mx-auto h-[2px] w-40 bg-white shadow-[0_0_15px_white]" />
+        </motion.div>
+
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {skillCategories.map((category) => {
             const IconComponent = category.icon;
-            const colorClass = colorMap[category.color as keyof typeof colorMap];
             
             return (
-              <Card 
-                key={category.title}
-                className="bg-slate-800/30 border-slate-700 p-6 hover:bg-slate-800/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-900/50"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <div className={`p-2 rounded-lg bg-slate-700/50`}>
-                      <IconComponent className={`w-6 h-6 ${colorClass}`} />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white">{category.title}</h3>
+              <motion.div key={category.title} variants={itemVariants}>
+                <Card className="h-full icebrick clip-corner p-8 hover:bg-white/10 transition-all duration-300 relative group overflow-hidden drop-shadow-2xl hover:scale-105">
+                  
+                  {/* Glacial Inner Sweep */}
+                  <div className="absolute -inset-[100%] bg-gradient-to-r from-transparent via-cyan-100/10 to-transparent w-[300%] h-full -rotate-45 translate-x-[-150%] transition-transform duration-700 group-hover:translate-x-[150%] pointer-events-none z-10" />
+                  
+                  {/* Ice Corner Accents */}
+                  <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-white opacity-50 drop-shadow-md" />
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-white opacity-50 drop-shadow-md" />
+
+                  {/* Faint background frost icon */}
+                  <div className="absolute right-0 bottom-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity pointer-events-none text-white blur-[2px] group-hover:blur-[1px]">
+                    <IconComponent className="w-32 h-32" />
                   </div>
                   
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill) => (
-                      <Badge 
-                        key={skill} 
-                        variant="secondary" 
-                        className="bg-slate-700/50 text-slate-300 hover:bg-slate-600/50 transition-colors"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
+                  <div className="relative z-20 space-y-8">
+                    <div className="flex items-center space-x-5">
+                       {/* Boxy Tech Icon Structure */}
+                      <div className="p-3 bg-white/10 border-t-2 border-l-2 border-white/60 border-r border-b border-white/10 shadow-[inner_0_0_10px_rgba(255,255,255,0.1)] clip-corner-reverse">
+                        <IconComponent className="w-6 h-6 text-white drop-shadow-[0_0_5px_white]" />
+                      </div>
+                      <h3 className="text-xl font-bold font-mono text-white tracking-widest uppercase drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">{category.title}</h3>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-3 pt-3">
+                      {category.skills.map((skill) => (
+                        <span 
+                          key={skill} 
+                          className="font-mono text-xs font-bold tracking-widest uppercase px-3 py-1.5 bg-black/30 border-t border-l border-white/40 border-b border-r border-white/10 text-white hover:bg-white/10 transition-colors clip-corner-reverse cursor-default shadow-inner"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

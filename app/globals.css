@@ -124,3 +124,122 @@ textarea:focus {
 ::selection {
   background: rgb(59 130 246 / 0.3);
 }
+
+/* ── Glacial Sweep: shimmering diagonal light across ice panels ── */
+@keyframes glacialSweep {
+  0%, 100% {
+    transform: rotate(-45deg) translateX(-150%);
+  }
+  50% {
+    transform: rotate(-45deg) translateX(150%);
+  }
+}
+
+/* ── HUD Scanline Animation ── */
+@keyframes hudScan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+/* ── HUD Pulse Glow Animation ── */
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.4), inset 0 0 10px rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.8), inset 0 0 20px rgba(6, 182, 212, 0.5);
+    border-color: rgba(6, 182, 212, 0.8);
+  }
+}
+
+/* ── Slow Spin for Hologram Rings ── */
+@keyframes spinSlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spinSlowReverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@layer utilities {
+  .clip-corner {
+    clip-path: polygon(
+      20px 0, 100% 0, 
+      100% calc(100% - 20px), calc(100% - 20px) 100%, 
+      0 100%, 0 20px
+    );
+  }
+
+  .clip-corner-reverse {
+    clip-path: polygon(
+      0 0, calc(100% - 20px) 0, 
+      100% 20px, 100% 100%, 
+      20px 100%, 0 calc(100% - 20px)
+    );
+  }
+
+  .hud-scanline {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hud-scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(6, 182, 212, 0.1) 50%,
+      rgba(6, 182, 212, 0.4) 50%,
+      transparent
+    );
+    background-size: 100% 4px;
+    z-index: 50;
+    pointer-events: none;
+    animation: hudScan 4s linear infinite;
+  }
+
+  .hud-grid {
+    background-image: linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .icebrick {
+    @apply bg-white/5 backdrop-blur-3xl border-t-2 border-l-2 border-white/40 border-b border-r border-white/10 shadow-[inner_0_0_30px_rgba(255,255,255,0.1),0_20px_40px_rgba(0,0,0,0.5)];
+  }
+}
+
+/* ── Screen Freezing Effect (Breathing) ── */
+@keyframes frostBreathe {
+  0%, 100% {
+    box-shadow: inset 0 0 120px rgba(255, 255, 255, 0.15), inset 0 0 40px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: inset 0 0 160px rgba(255, 255, 255, 0.25), inset 0 0 60px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* ── Smooth scroll behavior ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Subtle frosted noise texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}

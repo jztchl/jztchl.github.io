@@ -3,11 +3,11 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { Github, ExternalLink, Activity, Network, Database } from 'lucide-react';
 import Link from 'next/link';
-import { title } from 'node:process';
+import { motion } from 'framer-motion';
 
-function getCompressedImageURL(githubUrl: string, width = 500, height = 500, format = 'webp') {
+function getCompressedImageURL(githubUrl: string, width = 800, height = 500, format = 'webp') {
   try {
     if (githubUrl.includes('github.com') && githubUrl.includes('/blob/')) {
       githubUrl = githubUrl
@@ -18,202 +18,245 @@ function getCompressedImageURL(githubUrl: string, width = 500, height = 500, for
     const encodedURL = encodeURIComponent(githubUrl);
     return `https://images.weserv.nl/?url=${encodedURL}&w=${width}&h=${height}&output=${format}`;
   } catch (err) {
-    console.error('Invalid GitHub URL:', err);
     return '#';
   }
 }
 
-
-
 const projects = [
   {
-    title: 'Terminal Styled Random Chat App',
-    description: 'A real-time, scalable chat platform built with Django, Django Channels, and WebSockets—enabling anonymous, free-flowing conversations across dynamic chat rooms with live presence tracking and room management. On the frontend, a blazing-fast, terminal-inspired interface built with Next.js and Tailwind CSS delivers a retro hacker aesthetic with keyboard-first navigation, dark mode, and seamless real-time updates—crafted for those who live on the edge of the CLI.',
+    title: 'Ghost Mesh',
+    description: 'Multi-agent AI chat system where characters maintain persistent personality and memory across conversations. Built with JWT auth, Redis rate limiting, Alembic migrations, and Celery tasks.',
+    image: 'https://github.com/jztchl/Ghost-Mesh/raw/main/icon.png',
+    technologies: ['FastAPI', 'Celery', 'Redis', 'Gemini API', 'Docker'],
+    githubUrl: 'https://github.com/jztchl/Ghost-Mesh',
+    liveUrl: '#',
+    featured: true
+  },
+  {
+    title: 'AI Security Advisor',
+    description: 'File vulnerability scanner that runs Semgrep static analysis and enriches findings with Mistral AI. Features async processing via Celery and real-time SSE updates on a React frontend.',
+    image: 'https://github.com/jztchl/AI-Security-Advisor/raw/main/logo.png',
+    technologies: ['FastAPI', 'Celery', 'Redis', 'Mistral AI', 'Semgrep', 'React'],
+    githubUrl: 'https://github.com/jztchl/AI-Security-Advisor',
+    liveUrl: '#',
+    featured: true
+  },
+  {
+    title: 'Terminal Styled Random Chat',
+    description: 'A real-time, scalable chat platform built with Django Channels and WebSockets. On the frontend, a blazing-fast, terminal-inspired interface built with Next.js delivers a retro hacker aesthetic.',
     image: 'https://github.com/jztchl/random-chat-front_end/raw/main/screenshots/logo.png?raw=true',
-    technologies: ['django','django channels','redis','Next.js', 'TypeScript', 'Stripe', 'PostgreSQL', 'Tailwind CSS'],
+    technologies: ['Django', 'Django Channels', 'Next.js', 'PostgreSQL', 'Tailwind'],
     githubUrl: 'https://github.com/jztchl/random-chat-front_end',
     liveUrl: 'https://random-chat-front-end.vercel.app/',
     featured: true
   },
   {
     title: 'UNIX Task Manager',
-    description: 'task management API built with Django and Django REST Framework. It allows users to create, manage, and cancel long-running tasks asynchronously using threading and asyncio. Ideal for managing background operations with an intuitive RESTful interface.',
+    description: 'Task management API built with Django and DRF. Allows users to create, manage, and cancel long-running tasks asynchronously using threading and asyncio.',
     image: 'https://github.com/jztchl/unix_inspired_task_manager/raw/main/logo.png?raw=true',
-    technologies: ['django','django rest framework','threading','asyncio'],
+    technologies: ['Django', 'DRF', 'Threading', 'Asyncio'],
     githubUrl: 'https://github.com/jztchl/unix_inspired_task_manager',
     liveUrl: 'https://unixtask.koyeb.app/'
   },
   {
     title: 'Harmony Forge',
-    description: "Harmony Forge is a music generation platform merging Flask and Flutter. Flask manages backend tasks like music generation, user authentication, and model oversight, while Flutter's Android app offers a user-friendly interface. Together, they empower users to create music seamlessly through machine learning models and modern design principles.",
+    description: "Music generation platform merging Flask and Flutter. Flask manages backend tasks like generation and model oversight, while Flutter offers a modern UI.",
     image: 'https://github.com/jztchl/Harmony-Forge/blob/main/icon.png?raw=true',
-    technologies: ['Python', 'flask', 'flutter', 'TensorFlow','jwt','lstm'],
+    technologies: ['Python', 'Flask', 'Flutter', 'TensorFlow', 'LSTM'],
     githubUrl: 'https://github.com/jztchl/Harmony-Forge',
     liveUrl: '#'
   },
   {
-    title: 'Smart FIR Generation System',
-    description: 'The Smart FIR Generation System is an AI-powered web service designed to streamline the process of generating First Information Reports (FIRs). Leveraging computer vision, OCR, and deep learning, this system can extract text, detect objects, and identify faces from uploaded images to automatically generate an FIR.',
-    image: 'https://github.com/jztchl/Smart-FIR-Generation-System/raw/main/logo.png?raw=true',
-    technologies: ['openCV','ocr','python','django','yolo','drf','gemini'],
-    githubUrl: 'https://github.com/jztchl/Smart-FIR-Generation-System',
-    liveUrl: '#'
-  },
-  {
     title: 'Real-Time Weapon Detection',
-    description: 'A compact real-time weapon detection system using Python and YOLOv8. It detects weapons from live streams, triggers customizable alerts, and offers a desktop GUI and Django interface. Powered by a pretrained YOLOv8 model with support for retraining and data collection, its modular design separates the detection server, GUI, and training logic',
+    description: 'A real-time weapon detection system using Python and YOLOv8 from live streams featuring customizable alerts and a Django admin interface.',
     image: 'https://github.com/jztchl/realtime-weapon-detection/raw/main/weapon_detection.png?raw=true',
-    technologies: ['python','yolo','django','opencv','tkinter','pytorch'],
+    technologies: ['Python', 'YOLOv8', 'Django', 'OpenCV', 'PyTorch'],
     githubUrl: 'https://github.com/jztchl/realtime-weapon-detection',
-    liveUrl: '#'
-  },
-  {
-    title: 'User Registration and Management API',
-    description: 'A simple REST API built with Django REST Framework for managing user accounts. It provides endpoints to create, update, retrieve, and delete users with a minimal structure. Designed for easy integration, it separates views, serializers, and models, making it easy to extend or customize. Ideal for projects needing basic user management functionality',
-    image: 'https://github.com/jztchl/user_reg_manage_api/raw/main/favicon.ico?raw=true',
-    technologies: ['python','django','rest framework'],
-    githubUrl: 'https://github.com/jztchl/user_reg_manage_api',
-    liveUrl: '#'
-  },
-  {
-    title:'Leave Management System',
-    description:'A Django-based Leave Management System for handling leave requests and approvals with role-based access control. Employees can apply for leave and track status, while managers can approve or reject requests. Built with a modular structure, it’s easy to integrate, extend, and customize for basic organizational leave management needs.',
-    image:'https://github.com/jztchl/Leave-Management-API/raw/main/logo.png?raw=true',
-    technologies: ['python','django','rest framework'],
-    githubUrl: 'https://github.com/jztchl/Leave-Management-API',
     liveUrl: '#'
   }
 ];
 
 export default function Projects() {
-  return (
-    <section id="projects" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Featured Projects
-            </span>
-          </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            A showcase of my recent work and technical capabilities
-          </p>
-        </div>
+  const containerVariants: any = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
 
-        <div className="grid gap-8">
-          {/* Featured Project */}
+  const projectVariants: any = {
+    hidden: { opacity: 0, scale: 0.95, y: 30 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
+  return (
+    <section id="projects" className="relative py-24 z-10 lg:py-32 overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900/50 via-transparent to-transparent">
+      
+      {/* Background HUD Grid */}
+      <div className="absolute inset-0 pointer-events-none hud-grid opacity-10 mix-blend-screen" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Holographic Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 text-center sm:text-left"
+        >
+          <div className="inline-flex items-center space-x-3 mb-6 icebrick px-4 py-2 clip-corner">
+            <Network className="w-5 h-5 text-cyan-200" />
+            <span className="text-sm font-mono text-cyan-100 tracking-widest uppercase pr-3 font-bold">[NODE: DEPLOYED_SYSTEMS]</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-black font-mono tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-white to-cyan-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] uppercase mb-4">
+            Digital Archives
+          </h2>
+          <div className="h-[2px] w-32 bg-cyan-200 shadow-[0_0_15px_white] mx-auto sm:mx-0" />
+        </motion.div>
+
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid gap-16"
+        >
+          {/* Featured Core Systems (Icebricks) */}
           {projects.filter(p => p.featured).map((project) => (
-            <Card key={project.title} className="bg-slate-800/30 border-slate-700 overflow-hidden hover:shadow-xl hover:shadow-slate-900/50 transition-all duration-300 hover:scale-[1.02]">
-              <div className="grid lg:grid-cols-2 gap-0">
-                <div className="relative h-64 lg:h-auto">
+            <motion.div key={project.title} variants={projectVariants}>
+              <div className="icebrick clip-corner hover:shadow-[inner_0_0_50px_rgba(255,255,255,0.2),0_25px_50px_rgba(0,0,0,0.7)] transition-all duration-700 group relative overflow-hidden flex flex-col xl:flex-row">
+                
+                {/* Simulated Glass Reflection Sweep */}
+                <div className="absolute -inset-[100%] bg-gradient-to-r from-transparent via-white/10 to-transparent w-[300%] h-full -rotate-45 translate-x-[-150%] transition-transform duration-1000 group-hover:translate-x-[150%] pointer-events-none z-30" />
+                
+                {/* Glacial Scanline */}
+                <div className="absolute inset-0 hud-scanline opacity-40 group-hover:opacity-70 transition-opacity z-20 pointer-events-none" />
+
+                {/* Left: Frozen Data Visual */}
+               <div className="relative h-72 xl:h-auto xl:w-5/12 overflow-hidden bg-slate-950/80 border-r-2 border-white/20">
+                  <div className="absolute inset-0 bg-cyan-900/30 mix-blend-color z-10" />
                   <img 
                     src={getCompressedImageURL(project.image)} 
                     alt={project.title}
-                    className="w-800 h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110 opacity-70 group-hover:opacity-100 grayscale hover:grayscale-0 mix-blend-luminosity hover:mix-blend-normal"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20" />
-                </div>
-                <div className="p-8 flex flex-col justify-center">
-                  <Badge className="w-fit mb-4 bg-blue-600/20 text-blue-400 border-blue-500/30">
-                    Featured Project
-                  </Badge>
-                  <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
-                  <p className="text-slate-300 mb-6 leading-relaxed">{project.description}</p>
+                  {/* Frosted vignette over image */}
+                  <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.8)] z-10 pointer-events-none" />
                   
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="absolute top-4 left-4 z-20 bg-white/10 backdrop-blur-xl border border-white/30 px-3 py-1 text-[10px] text-white font-mono tracking-widest clip-corner-reverse shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                     STATUS: ONLINE
+                  </div>
+                </div>
+                
+                {/* Right: Data Access Block */}
+                <div className="p-8 sm:p-12 flex-1 relative z-10 bg-slate-900/20">
+                  
+                  <h3 className="text-3xl sm:text-4xl font-black text-white font-mono uppercase tracking-wide mb-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
+                    {project.title}
+                  </h3>
+                  <p className="text-cyan-50/90 font-mono text-sm sm:text-base leading-relaxed mb-8 font-light drop-shadow-sm">
+                    {project.description}
+                  </p>
+                  
+                  {/* Tech Stack Matrix */}
+                  <div className="flex flex-wrap gap-2.5 mb-10 bg-black/30 p-4 border-l-2 border-cyan-400">
+                    <Database className="w-5 h-5 text-cyan-200 mr-2 opacity-70" />
                     {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="outline" className="border-slate-600 text-slate-400">
+                      <span key={tech} className="bg-white/5 border border-white/20 text-cyan-50 font-mono text-xs px-2.5 py-1 uppercase shadow-[0_0_5px_rgba(255,255,255,0.1)]">
                         {tech}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
 
-                  <div className="flex space-x-4">
-                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="sm" className="border-slate-600 text-slate-300 hover:text-white">
-                      <Github className="w-4 h-4 mr-2" />
-                      Code
-                    </Button>
+                  <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <Link href={project.githubUrl} target="_blank" className="block sm:flex-1">
+                      <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-t border-l border-white/40 border-b border-r border-white/10 clip-corner rounded-none transition-all py-6 md:py-7 font-mono font-bold tracking-widest shadow-[0_5px_15px_rgba(0,0,0,0.3)]">
+                        <Github className="w-4 h-4 mr-3" /> [ INSPECT_CODE ]
+                      </Button>
                     </Link>
-                    <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                    <Button size="sm" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Live Demo
-                    </Button>
-                    </Link>
+                    {project.liveUrl !== '#' && (
+                      <Link href={project.liveUrl} target="_blank" className="block sm:flex-1">
+                        <Button className="w-full bg-cyan-500/30 hover:bg-cyan-400/50 text-cyan-50 border-t border-l border-cyan-300/60 border-b border-r border-cyan-500/20 clip-corner rounded-none transition-all py-6 md:py-7 font-mono font-bold tracking-widest shadow-[0_0_20px_rgba(6,182,212,0.4)] relative overflow-hidden group/btn">
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-[800ms] pointer-events-none" />
+                          <Activity className="w-4 h-4 mr-3" /> [ LAUNCH_NODE ]
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
-            </Card>
+            </motion.div>
           ))}
 
-          {/* Other Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.filter(p => !p.featured).map((project, index) => (
-              <Card 
-                key={project.title} 
-                className="bg-slate-800/30 border-slate-700 overflow-hidden hover:bg-slate-800/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-900/50"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="relative h-48">
-                  <img 
-                    src={getCompressedImageURL(project.image)} 
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
-                  <p className="text-slate-400 mb-4 text-sm leading-relaxed">{project.description}</p>
+          {/* Fragmented Icebricks Grid (Secondary projects) */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-8">
+            {projects.filter(p => !p.featured).map((project) => (
+              <motion.div key={project.title} variants={projectVariants}>
+                <div className="h-full icebrick clip-corner hover:scale-[1.02] hover:-translate-y-2 transition-all duration-500 flex flex-col relative group">
                   
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs bg-slate-700/50 text-slate-300">
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <Badge variant="secondary" className="text-xs bg-slate-700/50 text-slate-300">
-                        +{project.technologies.length - 3}
-                      </Badge>
-                    )}
+                  <div className="relative h-48 overflow-hidden bg-slate-900 border-b border-white/10">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent z-10 pointer-events-none" />
+                    <img 
+                      src={getCompressedImageURL(project.image)} 
+                      alt={project.title}
+                      className="w-full h-full object-cover mix-blend-screen opacity-60 group-hover:opacity-100 grayscale transition-all duration-700 group-hover:scale-[1.05]"
+                    />
                   </div>
+                  
+                  <div className="p-6 sm:p-8 flex-1 flex flex-col z-10 bg-slate-900/30">
+                    <h3 className="text-xl font-bold font-mono text-white mb-3 drop-shadow-[0_0_5px_rgba(255,255,255,0.4)]">{project.title}</h3>
+                    <p className="text-slate-300 font-mono text-xs leading-relaxed mb-6 flex-1">{project.description}</p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <span key={tech} className="text-[10px] uppercase font-mono bg-black/40 text-cyan-200 border border-white/20 px-1.5 py-0.5 shadow-inner">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
 
-                  <div className="flex space-x-2">
-                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer"> 
-                    <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white p-2">
-                      <Github className="w-4 h-4" />
-                    </Button>
-                    </Link>
-                    <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer"> 
-                    <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white p-2">
-                      <ExternalLink className="w-4 h-4" />
-                    </Button>
-                    </Link>
+                    <div className="flex space-x-3 mt-auto pt-4 border-t border-white/10">
+                      <Link href={project.githubUrl} target="_blank" className="flex-1"> 
+                        <Button variant="ghost" className="w-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white font-mono text-xs tracking-widest uppercase transition-all rounded-none shadow-sm">
+                          <Github className="w-3 h-3 mr-2" /> Code
+                        </Button>
+                      </Link>
+                      {project.liveUrl !== '#' && (
+                        <Link href={project.liveUrl} target="_blank" className="flex-1"> 
+                          <Button variant="ghost" className="w-full bg-cyan-900/40 hover:bg-cyan-800/60 border border-cyan-500/40 text-cyan-100 hover:text-white font-mono text-xs tracking-widest uppercase transition-all rounded-none shadow-[inset_0_0_8px_rgba(6,182,212,0.2)]">
+                            <ExternalLink className="w-3 h-3 mr-2" /> Live
+                          </Button>
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </Card>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* View More Projects */}
-        <div className="text-center mt-12">
-          <Link href="https://github.com/jztchl?tab=repositories" target="_blank" rel="noopener noreferrer">
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-slate-600 text-slate-300 hover:text-white hover:border-slate-500"
-          >
-            View All Projects
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+        {/* View Vault Action */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="text-center mt-24"
+        >
+          <Link href="https://github.com/jztchl?tab=repositories" target="_blank">
+            <Button 
+              size="lg"
+              className="icebrick text-white hover:text-cyan-200 hover:brightness-125 clip-corner-reverse transition-all px-12 py-8 font-mono font-black tracking-[0.2em] text-lg rounded-none"
+            >
+              [ QUERY_FROZEN_ARCHIVE ]
+            </Button>
           </Link>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );
 }
-// }
