@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   authors: [{ name: 'Vishnu KM', url: 'https://github.com/jztchl' }],
   creator: 'Vishnu KM',
   publisher: 'Vishnu KM',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicons/favicon-96x96.png',
+    apple: '/favicons/apple-touch-icon.png',
+  },
   robots: {
     index: true,
     follow: true,
@@ -45,7 +50,7 @@ export const metadata: Metadata = {
     siteName: 'Vishnu KM Portfolio',
     images: [
       {
-        url: 'https://vishnukm.vercel.app/avatar.jpeg',
+        url: 'https://vishnukm.vercel.app/favicons/favicon.svg',
         width: 1200,
         height: 630,
         alt: 'Vishnu KM | Backend Engineer Portfolio',
@@ -60,7 +65,7 @@ export const metadata: Metadata = {
     description:
       'Browse the backend portfolio of Vishnu KM, featuring modern systems built with Python, Django, FastAPI, and Postgres.',
     creator: '@vishnukm',
-    images: ['https://vishnukm.vercel.app/avatar.jpeg'],
+    images: ['https://vishnukm.vercel.app/favicons/favicon.svg'],
   },
 };
 
@@ -76,7 +81,7 @@ export default function RootLayout({
         "@type": "Person",
         name: "Vishnu KM",
         url: "https://vishnukm.vercel.app",
-        image: "https://vishnukm.vercel.app/avatar.jpeg",
+        image: "https://vishnukm.vercel.app/favicons/favicon.svg",
         sameAs: [
           "https://github.com/jztchl",
           "https://linkedin.com/in/kmvishnu",
@@ -130,7 +135,7 @@ export default function RootLayout({
         "@type": "Organization",
         name: "Vishnu KM Freelance",
         url: "https://vishnukm.vercel.app",
-        logo: "https://vishnukm.vercel.app/avatar.jpeg",
+        logo: "https://vishnukm.vercel.app/favicons/favicon.svg",
         sameAs: [
           "https://github.com/jztchl",
           "https://linkedin.com/in/kmvishnu"
@@ -142,6 +147,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
