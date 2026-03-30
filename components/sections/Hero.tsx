@@ -10,7 +10,8 @@ const texts = [
   'Backend Engineer',
   'Python Developer',
   'API Specialist',
-  'Cloud Architect'
+  'Problem Solver',
+  'Tech Enthusiast'
 ];
 
 export default function Hero() {

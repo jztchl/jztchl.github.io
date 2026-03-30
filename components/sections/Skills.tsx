@@ -28,7 +28,7 @@ const skillCategories = [
   {
     title: 'DevOps Context',
     icon: Cloud,
-    skills: ['Git', 'Docker', 'Linux', 'GitHub Actions']
+    skills: ['Git', 'Docker', 'Linux', 'GitHub Actions','GCP Cloud Run','Render']
   },
   {
     title: 'Deployment Nodes',

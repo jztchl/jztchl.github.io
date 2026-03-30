@@ -38,7 +38,7 @@ export default function About() {
           </div>
           <h2 className="text-4xl sm:text-5xl font-black font-mono tracking-widest uppercase">
             <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">
-              System Architect
+              What I do
             </span>
           </h2>
         </motion.div>

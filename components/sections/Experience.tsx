@@ -6,39 +6,51 @@ import { motion } from 'framer-motion';
 
 const experiences = [
   {
-    title: 'Python Backend Developer',
-    company: 'Upwork',
-    period: '2025 - Present',
+  title: 'Freelance Developer',
+    company: 'Various Clients',
+    period: 'Dec 2024 - Present',
     location: 'Remote',
-    description: 'Developed and optimized custom backend solutions utilizing Python, Django, and FastAPI. Specializing in high-performance APIs, asynchronous tasks via Celery, and deploying full scalable systems.',
+    description: 'Sole developer building a full-stack e-commerce platform for DreamStore Kannur (local stationery retailer) using Django, PostgreSQL, and server-side templating - product catalog, cart, checkout, payment integration, user auth, and admin panel. Also developed warehouse management app for TK Enterprise (private application).',
     achievements: [
-      'Engineered an AI-powered conversational mesh system handling multi-agent workflows',
-      'Optimized PostgreSQL queries reducing complex data retrieval by 30%',
-      'Integrated WebSockets for real-time applications using Django Channels'
+      'Built complete e-commerce system for DreamStore with Django templates and PostgreSQL',
+      'Developed warehouse management app for TK Enterprise with Firebase integration',
+      'Deployed DreamStore on GCP Cloud Run with payment gateway, user authentication, and admin panel'
     ]
   },
   {
-    title: 'Backend Developer Intern',
-    company: 'Pixaura Global',
-    period: 'Mar 2024 - Dec 2024',
-    location: 'Remote',
-    description: 'Designed and implemented secure, scalable RESTful APIs. Actively involved in DB schema design and troubleshooting core services.',
+    title: 'Software Engineer Backend',
+    company: 'Tiqr Labs Private Limited',
+    period: 'Sep 2024 - Oct 2025',
+    location: 'Hybrid',
+    description: 'Designed and developed scalable backend services and RESTful APIs using Python and Django, working closely with cross-functional teams to deliver secure, high-quality solutions. Collaborated with front-end developers to ensure smooth API integration and system reliability.',
     achievements: [
-      'Reduced customer support queries by 20% through extensive bug fixes',
-      'Implemented robust JWT authentication strategies',
-      'Actively participated in agile sprint planning and code reviews'
+      'Enhanced system performance by optimizing backend data flow and reducing latency',
+      'Lowered bug rate by 15% through collaborative debugging and proactive testing strategies',
+      'Improved API reliability by refining response structure and syncing closely with frontend teams'
     ]
   },
   {
-    title: 'Freelance Backend Engineer',
-    company: 'Self-Employed',
-    period: '2023 - Present',
+    title: 'Project Intern',
+    company: 'Change Payments',
+    period: 'Jul 2022 - Sep 2022',
     location: 'Remote',
-    description: 'Crafted full-stack platforms from scratch. Currently architecting scalable E-Commerce solutions and custom booking modules for international clients.',
+    description: 'Worked as a Project Intern to build a smart billing system aimed at improving retail efficiency. Integrated dynamic discount logic and a vaccine status scanner to streamline customer interaction and checkout processes',
     achievements: [
-      'Delivered a fully-functional appointment system for a client in Japan',
-      'Designed monolithic backend services prioritizing rapid MVP releases',
-      'Set up and maintained automated testing and CI/CD'
+      'Implemented flexible discount rules to boost shopkeeper engagement and drive sales.',
+      'Improved system performance through testing and debugging for a smoother experience.',
+      'Built a real-world solution combining automation and health compliance for retail.'
+    ]
+  },
+  {
+    title: 'Python Developer Trainee',
+    company: 'BUSINESS TECHNOLOGY RESEARCH & ANALYTICS CENTRE',
+    period: 'Nov 2021 - Apr 2022',
+    location: 'On-site',
+    description: 'Contributed to the development of web applications using Python and Django, while gaining hands-on experience in real-world software implementation and backend development practices.',
+    achievements: [
+      'Assisted in building and maintaining Django-based web applications.',
+      'Gained practical experience in backend logic, database operations, and debugging.',
+      'Improved understanding of development workflows by collaborating with experienced developers.'
     ]
   }
 ];
