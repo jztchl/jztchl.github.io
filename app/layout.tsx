@@ -26,6 +26,25 @@ export const metadata: Metadata = {
   authors: [{ name: 'Vishnu KM', url: 'https://github.com/jztchl' }],
   creator: 'Vishnu KM',
   publisher: 'Vishnu KM',
+  alternates: {
+    canonical: 'https://vishnukm.vercel.app',
+    languages: {
+      'en-US': 'https://vishnukm.vercel.app',
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
+  },
+  category: 'technology',
+  classification: 'Portfolio',
+  referrer: 'origin-when-cross-origin',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicons/favicon-96x96.png',
