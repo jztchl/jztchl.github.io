@@ -35,7 +35,7 @@ const projects = [
   {
     title: 'Ghost Mesh',
     description: 'Multi-agent AI chat system where characters maintain persistent personality and memory across conversations. Built with JWT auth, Redis rate limiting, Alembic migrations, and Celery tasks.',
-    image: 'https://github.com/jztchl/Ghost-Mesh/raw/main/icon.png?raw=true',
+    image: 'https://github.com/jztchl/ghost_mesh/blob/main/logo.png?raw=true',
     technologies: ['FastAPI', 'Celery', 'Redis', 'Gemini API', 'Docker'],
     githubUrl: 'https://github.com/jztchl/Ghost-Mesh',
     liveUrl: '#'
@@ -43,7 +43,7 @@ const projects = [
   {
     title: 'AI Security Advisor',
     description: 'File vulnerability scanner that runs Semgrep static analysis and enriches findings with Mistral AI. Features async processing via Celery and real-time SSE updates on a React frontend.',
-    image: 'https://github.com/jztchl/AI-Security-Advisor/raw/main/logo.png?raw=true',
+    image: 'https://github.com/jztchl/ai_security_advisor/blob/main/logo.png?raw=true',
     technologies: ['FastAPI', 'Celery', 'Redis', 'Mistral AI', 'Semgrep', 'React'],
     githubUrl: 'https://github.com/jztchl/AI-Security-Advisor',
     liveUrl: '#'
