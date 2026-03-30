@@ -1,8 +1,9 @@
 'use client';
 
 import { Card } from '@/components/ui/card';
-import { GraduationCap, Award, BookOpen, Fingerprint } from 'lucide-react';
+import { GraduationCap, Award, BookOpen, Fingerprint, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { title } from 'node:process';
 
 const education = [
   {
@@ -22,15 +23,36 @@ const education = [
 ];
 
 const certifications = [
+  { 
+    title: 'Programming With Python',
+    issuer: 'Open EDG Python Institute',
+    year: '2025',
+    url:'https://www.linkedin.com/learning/certificates/e2d4f7695ff8ee10cf400d32d7529dfe15c2dac21ea57ec9f14b16e0a1e3e1b9?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BdPnkQYNoT52VYZhJgZ2GjQ%3D%3D'
+  },
+
   {
-    title: 'AWS Certified Solutions Architect [Planned]',
-    issuer: 'Amazon Web Services',
-    year: '2025'
+    title: 'Docker Foundation',
+    issuer: 'Docker',
+    year: '2025',
+    url:'https://www.linkedin.com/learning/certificates/da9ec74a679b9e293832af0bfe41be3ed59df6214d4aa1d002cdcb20b8f58706?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BdPnkQYNoT52VYZhJgZ2GjQ%3D%3D'
   },
   {
-    title: 'Advanced Python Architecture [Planned]',
-    issuer: 'DataCamp',
-    year: '2025'
+    title: 'Github Career Essentials',
+    issuer: 'Github',
+    year: '2025',
+    url:'https://www.linkedin.com/learning/certificates/2ca0219130e59c85aef79eafe11d076dd16f92b21e24461ca0ad8e485d6d1221?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BdPnkQYNoT52VYZhJgZ2GjQ%3D%3D'
+  },
+  {
+    title: 'Rest API Certificate',
+    issuer: 'HackerRank',
+    year: '2025',
+    url:'https://www.hackerrank.com/certificates/9a29708aadf4'
+  },
+  {
+    title: 'Django  Skill Up',
+    issuer: 'GeeksforGeeks',
+    year: '2025',
+    url:'https://www.geeksforgeeks.org/certificate/f0846d4f2897195cdd954ac5fd976d55'
   }
 ];
 
@@ -49,7 +71,7 @@ export default function Education() {
   };
 
   return (
-    <section id="education" className="relative py-24 z-10 lg:py-32 overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-900/40 via-transparent to-transparent">
+    <section id="education" className="relative py-24 z-10 lg:py-32 overflow-hidden bg-[radial-gradient(ellipse at top right,_var(--tw-gradient-stops))] from-slate-900/40 via-transparent to-transparent">
       
       {/* Background HUD Grid */}
       <div className="absolute inset-0 pointer-events-none hud-grid opacity-15 mix-blend-screen" />
@@ -159,21 +181,33 @@ export default function Education() {
                     {/* Background noise for certs */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none" />
 
-                    <div className="relative z-10 flex flex-col h-full">
-                       <h4 className="text-white font-mono font-bold text-sm leading-relaxed tracking-wider uppercase drop-shadow-sm mb-4">
-                         {cert.title}
-                       </h4>
-                       <div className="mt-auto space-y-2">
-                         <div className="text-xs text-cyan-100 font-mono tracking-widest flex items-center">
-                            <span className="w-2 h-2 bg-cyan-300 rounded-full mr-2 shadow-[0_0_5px_cyan]"></span>
-                            {cert.issuer}
-                         </div>
-                         <div className="text-[10px] text-white/50 font-mono tracking-widest uppercase">
-                            [VALIDATED: {cert.year}]
+                    <div className="relative z-10 flex flex-row h-full justify-between items-start">
+                       <div className="flex flex-col h-full">
+                         <h4 className="text-white font-mono font-bold text-sm leading-relaxed tracking-wider uppercase drop-shadow-sm mb-4">
+                           {cert.title}
+                         </h4>
+                         <div className="mt-auto space-y-2">
+                           <div className="text-xs text-cyan-100 font-mono tracking-widest flex items-center">
+                              <span className="w-2 h-2 bg-cyan-300 rounded-full mr-2 shadow-[0_0_5px_cyan]"></span>
+                              {cert.issuer}
+                           </div>
+                           <div className="text-[10px] text-white/50 font-mono tracking-widest uppercase">
+                              [VALIDATED: {cert.year}]
+                           </div>
                          </div>
                        </div>
+                       {cert.url && (
+                         <a 
+                           href={cert.url} 
+                           target="_blank" 
+                           className="inline-flex items-center text-xs text-cyan-200 hover:text-white transition-colors font-mono tracking-widest uppercase ml-4"
+                         >
+                           <ExternalLink className="w-3 h-3 mr-1" />
+                           View
+                         </a>
+                       )}
                     </div>
-                  </div>
+                </div>
                 </motion.div>
               ))}
             </div>
@@ -185,7 +219,6 @@ export default function Education() {
                </span>
             </motion.div>
           </motion.div>
-
         </div>
       </div>
     </section>

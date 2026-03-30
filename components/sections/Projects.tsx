@@ -3,7 +3,7 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Github, ExternalLink, Activity, Network, Database } from 'lucide-react';
+import { Github, ExternalLink, Activity, Network, Database, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -23,23 +23,30 @@ function getCompressedImageURL(githubUrl: string, width = 800, height = 500, for
 }
 
 const projects = [
+{
+  title: 'Dream Store Kannur',
+  description: 'E-commerce platform for Dream Store Kannur, built with Django and deployed on Google Cloud Run.',
+  image: 'https://assets.dreamstorekannur.com/static/img/hero.png',
+  technologies: ['Django','PostgreSQL','Docker','Google Cloud Run'],
+  githubUrl: '#',
+  liveUrl: 'https://dreamstorekannur.com'
+},
+
   {
     title: 'Ghost Mesh',
     description: 'Multi-agent AI chat system where characters maintain persistent personality and memory across conversations. Built with JWT auth, Redis rate limiting, Alembic migrations, and Celery tasks.',
-    image: 'https://github.com/jztchl/Ghost-Mesh/raw/main/icon.png',
+    image: 'https://github.com/jztchl/Ghost-Mesh/raw/main/icon.png?raw=true',
     technologies: ['FastAPI', 'Celery', 'Redis', 'Gemini API', 'Docker'],
     githubUrl: 'https://github.com/jztchl/Ghost-Mesh',
-    liveUrl: '#',
-    featured: true
+    liveUrl: '#'
   },
   {
     title: 'AI Security Advisor',
     description: 'File vulnerability scanner that runs Semgrep static analysis and enriches findings with Mistral AI. Features async processing via Celery and real-time SSE updates on a React frontend.',
-    image: 'https://github.com/jztchl/AI-Security-Advisor/raw/main/logo.png',
+    image: 'https://github.com/jztchl/AI-Security-Advisor/raw/main/logo.png?raw=true',
     technologies: ['FastAPI', 'Celery', 'Redis', 'Mistral AI', 'Semgrep', 'React'],
     githubUrl: 'https://github.com/jztchl/AI-Security-Advisor',
-    liveUrl: '#',
-    featured: true
+    liveUrl: '#'
   },
   {
     title: 'Terminal Styled Random Chat',
@@ -47,8 +54,7 @@ const projects = [
     image: 'https://github.com/jztchl/random-chat-front_end/raw/main/screenshots/logo.png?raw=true',
     technologies: ['Django', 'Django Channels', 'Next.js', 'PostgreSQL', 'Tailwind'],
     githubUrl: 'https://github.com/jztchl/random-chat-front_end',
-    liveUrl: 'https://random-chat-front-end.vercel.app/',
-    featured: true
+    liveUrl: '#'
   },
   {
     title: 'UNIX Task Manager',
@@ -56,7 +62,7 @@ const projects = [
     image: 'https://github.com/jztchl/unix_inspired_task_manager/raw/main/logo.png?raw=true',
     technologies: ['Django', 'DRF', 'Threading', 'Asyncio'],
     githubUrl: 'https://github.com/jztchl/unix_inspired_task_manager',
-    liveUrl: 'https://unixtask.koyeb.app/'
+    liveUrl: '#'
   },
   {
     title: 'Harmony Forge',
@@ -124,75 +130,11 @@ export default function Projects() {
           className="grid gap-16"
         >
           {/* Featured Core Systems (Icebricks) */}
-          {projects.filter(p => p.featured).map((project) => (
-            <motion.div key={project.title} variants={projectVariants}>
-              <div className="icebrick clip-corner hover:shadow-[inner_0_0_50px_rgba(255,255,255,0.2),0_25px_50px_rgba(0,0,0,0.7)] transition-all duration-700 group relative overflow-hidden flex flex-col xl:flex-row">
-                
-                {/* Simulated Glass Reflection Sweep */}
-                <div className="absolute -inset-[100%] bg-gradient-to-r from-transparent via-white/10 to-transparent w-[300%] h-full -rotate-45 translate-x-[-150%] transition-transform duration-1000 group-hover:translate-x-[150%] pointer-events-none z-30" />
-                
-                {/* Glacial Scanline */}
-                <div className="absolute inset-0 hud-scanline opacity-40 group-hover:opacity-70 transition-opacity z-20 pointer-events-none" />
 
-                {/* Left: Frozen Data Visual */}
-               <div className="relative h-72 xl:h-auto xl:w-5/12 overflow-hidden bg-slate-950/80 border-r-2 border-white/20">
-                  <div className="absolute inset-0 bg-cyan-900/30 mix-blend-color z-10" />
-                  <img 
-                    src={getCompressedImageURL(project.image)} 
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110 opacity-70 group-hover:opacity-100 grayscale hover:grayscale-0 mix-blend-luminosity hover:mix-blend-normal"
-                  />
-                  {/* Frosted vignette over image */}
-                  <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.8)] z-10 pointer-events-none" />
-                  
-                  <div className="absolute top-4 left-4 z-20 bg-white/10 backdrop-blur-xl border border-white/30 px-3 py-1 text-[10px] text-white font-mono tracking-widest clip-corner-reverse shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-                     STATUS: ONLINE
-                  </div>
-                </div>
-                
-                {/* Right: Data Access Block */}
-                <div className="p-8 sm:p-12 flex-1 relative z-10 bg-slate-900/20">
-                  
-                  <h3 className="text-3xl sm:text-4xl font-black text-white font-mono uppercase tracking-wide mb-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
-                    {project.title}
-                  </h3>
-                  <p className="text-cyan-50/90 font-mono text-sm sm:text-base leading-relaxed mb-8 font-light drop-shadow-sm">
-                    {project.description}
-                  </p>
-                  
-                  {/* Tech Stack Matrix */}
-                  <div className="flex flex-wrap gap-2.5 mb-10 bg-black/30 p-4 border-l-2 border-cyan-400">
-                    <Database className="w-5 h-5 text-cyan-200 mr-2 opacity-70" />
-                    {project.technologies.map((tech) => (
-                      <span key={tech} className="bg-white/5 border border-white/20 text-cyan-50 font-mono text-xs px-2.5 py-1 uppercase shadow-[0_0_5px_rgba(255,255,255,0.1)]">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <Link href={project.githubUrl} target="_blank" className="block sm:flex-1">
-                      <Button className="w-full bg-white/10 hover:bg-white/20 text-white border-t border-l border-white/40 border-b border-r border-white/10 clip-corner rounded-none transition-all py-6 md:py-7 font-mono font-bold tracking-widest shadow-[0_5px_15px_rgba(0,0,0,0.3)]">
-                        <Github className="w-4 h-4 mr-3" /> [ INSPECT_CODE ]
-                      </Button>
-                    </Link>
-                    {project.liveUrl !== '#' && (
-                      <Link href={project.liveUrl} target="_blank" className="block sm:flex-1">
-                        <Button className="w-full bg-cyan-500/30 hover:bg-cyan-400/50 text-cyan-50 border-t border-l border-cyan-300/60 border-b border-r border-cyan-500/20 clip-corner rounded-none transition-all py-6 md:py-7 font-mono font-bold tracking-widest shadow-[0_0_20px_rgba(6,182,212,0.4)] relative overflow-hidden group/btn">
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-[800ms] pointer-events-none" />
-                          <Activity className="w-4 h-4 mr-3" /> [ LAUNCH_NODE ]
-                        </Button>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
 
           {/* Fragmented Icebricks Grid (Secondary projects) */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-8">
-            {projects.filter(p => !p.featured).map((project) => (
+            {projects.map((project) => (
               <motion.div key={project.title} variants={projectVariants}>
                 <div className="h-full icebrick clip-corner hover:scale-[1.02] hover:-translate-y-2 transition-all duration-500 flex flex-col relative group">
                   
@@ -209,20 +151,26 @@ export default function Projects() {
                     <h3 className="text-xl font-bold font-mono text-white mb-3 drop-shadow-[0_0_5px_rgba(255,255,255,0.4)]">{project.title}</h3>
                     <p className="text-slate-300 font-mono text-xs leading-relaxed mb-6 flex-1">{project.description}</p>
                     
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.slice(0, 3).map((tech) => (
-                        <span key={tech} className="text-[10px] uppercase font-mono bg-black/40 text-cyan-200 border border-white/20 px-1.5 py-0.5 shadow-inner">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                     {/* Tech Stack Matrix */}
+                  <div className="flex flex-wrap gap-2.5 mb-10 bg-black/30 p-4 border-l-2 border-cyan-400">
+                    <Settings className="w-5 h-5 text-cyan-200 mr-2 opacity-70" />
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="bg-white/5 border border-white/20 text-cyan-50 font-mono text-xs px-2.5 py-1 uppercase shadow-[0_0_5px_rgba(255,255,255,0.1)]">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
 
+                   
                     <div className="flex space-x-3 mt-auto pt-4 border-t border-white/10">
+                     {project.githubUrl!=='#'&&(
                       <Link href={project.githubUrl} target="_blank" className="flex-1"> 
                         <Button variant="ghost" className="w-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white font-mono text-xs tracking-widest uppercase transition-all rounded-none shadow-sm">
                           <Github className="w-3 h-3 mr-2" /> Code
                         </Button>
                       </Link>
+                      )}
+
                       {project.liveUrl !== '#' && (
                         <Link href={project.liveUrl} target="_blank" className="flex-1"> 
                           <Button variant="ghost" className="w-full bg-cyan-900/40 hover:bg-cyan-800/60 border border-cyan-500/40 text-cyan-100 hover:text-white font-mono text-xs tracking-widest uppercase transition-all rounded-none shadow-[inset_0_0_8px_rgba(6,182,212,0.2)]">
