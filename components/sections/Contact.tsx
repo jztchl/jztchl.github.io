@@ -38,7 +38,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32 z-10 overflow-hidden lg:py-40 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-slate-900/50 via-transparent to-black">
+    <section id="contact" className="relative py-32 z-10 overflow-hidden lg:py-40 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-slate-900/40 via-transparent to-transparent">
       
       {/* HUD Background Grid (Frosted) */}
       <div className="absolute inset-0 pointer-events-none hud-grid opacity-15 mix-blend-screen" />

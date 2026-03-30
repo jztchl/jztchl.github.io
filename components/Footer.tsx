@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black/60 border-t-4 border-white overflow-hidden backdrop-blur-3xl z-40 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+    <footer className="relative  border-t-4 border-white overflow-hidden backdrop-blur-3xl z-40 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
       
       {/* Background HUD Grid */}
       <div className="absolute inset-0 pointer-events-none hud-grid opacity-30 mix-blend-screen" />
