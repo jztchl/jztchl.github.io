@@ -103,9 +103,9 @@ export default function Contact() {
               className="absolute -left-12 bottom-32 flex flex-col space-y-5 z-30 pointer-events-auto"
             >
               {[
-                { icon: Github, href: 'https://github.com/jztchl', color: 'hover:border-cyan-200' },
+                { icon: Github, href: 'https://github.com/kmvishn', color: 'hover:border-cyan-200' },
                 { icon: Mail, href: 'mailto:vishnukm.dev@gmail.com', color: 'hover:border-blue-200' },
-                { icon: Linkedin, href: 'https://www.linkedin.com/in/vishnu-k-m-4ba69826a/', color: 'hover:border-sky-200' }
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/kmvishnu', color: 'hover:border-sky-200' }
               ].map((social, i) => (
                  <Link key={i} href={social.href} target="_blank" className={`icebrick p-3 clip-corner border-t border-l border-white/60 hover:scale-[1.15] hover:bg-white/20 transition-all duration-300 ${social.color} shadow-[0_15px_30px_rgba(0,0,0,0.8)]`}>
                    <social.icon className="w-5 h-5 text-white drop-shadow-[0_0_5px_white]" />

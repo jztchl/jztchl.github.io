@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: 'https://jztchl.vercel.app', 
+    siteUrl: 'https://kmvishnu.vercel.app', 
     generateRobotsTxt: true,
     changefreq: 'weekly',
     priority: 0.7,

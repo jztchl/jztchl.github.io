@@ -94,7 +94,7 @@ export default function Navigation() {
                 </a>
               ))}
               <div className="flex items-center justify-center space-x-6 pt-6 border-t border-white/20">
-                <a href="https://github.com/jztchl" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-200 transition-colors drop-shadow-[0_0_5px_white]">
+                <a href="https://github.com/kmvishn" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-200 transition-colors drop-shadow-[0_0_5px_white]">
                   <Github className="w-6 h-6" />
                 </a>
                 <a href="http://linkedin.com/in/kmvishnu" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-200 transition-colors drop-shadow-[0_0_5px_white]">

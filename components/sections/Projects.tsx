@@ -35,49 +35,49 @@ const projects = [
   {
     title: 'Ghost Mesh',
     description: 'Multi-agent AI chat system where characters maintain persistent personality and memory across conversations. Built with JWT auth, Redis rate limiting, Alembic migrations, and Celery tasks.',
-    image: 'https://github.com/jztchl/Ghost-Mesh/raw/main/icon.png?raw=true',
+    image: 'https://github.com/kmvishn/Ghost-Mesh/raw/main/icon.png?raw=true',
     technologies: ['FastAPI', 'Celery', 'Redis', 'Gemini API', 'Docker'],
-    githubUrl: 'https://github.com/jztchl/Ghost-Mesh',
+    githubUrl: 'https://github.com/kmvishn/Ghost-Mesh',
     liveUrl: '#'
   },
   {
     title: 'AI Security Advisor',
     description: 'File vulnerability scanner that runs Semgrep static analysis and enriches findings with Mistral AI. Features async processing via Celery and real-time SSE updates on a React frontend.',
-    image: 'https://github.com/jztchl/AI-Security-Advisor/raw/main/logo.png?raw=true',
+    image: 'https://github.com/kmvishn/AI-Security-Advisor/raw/main/logo.png?raw=true',
     technologies: ['FastAPI', 'Celery', 'Redis', 'Mistral AI', 'Semgrep', 'React'],
-    githubUrl: 'https://github.com/jztchl/AI-Security-Advisor',
+    githubUrl: 'https://github.com/kmvishn/AI-Security-Advisor',
     liveUrl: '#'
   },
   {
     title: 'Terminal Styled Random Chat',
     description: 'A real-time, scalable chat platform built with Django Channels and WebSockets. On the frontend, a blazing-fast, terminal-inspired interface built with Next.js delivers a retro hacker aesthetic.',
-    image: 'https://github.com/jztchl/random-chat-front_end/raw/main/screenshots/logo.png?raw=true',
+    image: 'https://github.com/kmvishn/random-chat-front_end/raw/main/screenshots/logo.png?raw=true',
     technologies: ['Django', 'Django Channels', 'Next.js', 'PostgreSQL', 'Tailwind'],
-    githubUrl: 'https://github.com/jztchl/random-chat-front_end',
+    githubUrl: 'https://github.com/kmvishn/random-chat-front_end',
     liveUrl: '#'
   },
   {
     title: 'UNIX Task Manager',
     description: 'Task management API built with Django and DRF. Allows users to create, manage, and cancel long-running tasks asynchronously using threading and asyncio.',
-    image: 'https://github.com/jztchl/unix_inspired_task_manager/raw/main/logo.png?raw=true',
+    image: 'https://github.com/kmvishn/unix_inspired_task_manager/raw/main/logo.png?raw=true',
     technologies: ['Django', 'DRF', 'Threading', 'Asyncio'],
-    githubUrl: 'https://github.com/jztchl/unix_inspired_task_manager',
+    githubUrl: 'https://github.com/kmvishn/unix_inspired_task_manager',
     liveUrl: '#'
   },
   {
     title: 'Harmony Forge',
     description: "Music generation platform merging Flask and Flutter. Flask manages backend tasks like generation and model oversight, while Flutter offers a modern UI.",
-    image: 'https://github.com/jztchl/Harmony-Forge/blob/main/icon.png?raw=true',
+    image: 'https://github.com/kmvishn/Harmony-Forge/blob/main/icon.png?raw=true',
     technologies: ['Python', 'Flask', 'Flutter', 'TensorFlow', 'LSTM'],
-    githubUrl: 'https://github.com/jztchl/Harmony-Forge',
+    githubUrl: 'https://github.com/kmvishn/Harmony-Forge',
     liveUrl: '#'
   },
   {
     title: 'Real-Time Weapon Detection',
     description: 'A real-time weapon detection system using Python and YOLOv8 from live streams featuring customizable alerts and a Django admin interface.',
-    image: 'https://github.com/jztchl/realtime-weapon-detection/raw/main/weapon_detection.png?raw=true',
+    image: 'https://github.com/kmvishn/realtime-weapon-detection/raw/main/weapon_detection.png?raw=true',
     technologies: ['Python', 'YOLOv8', 'Django', 'OpenCV', 'PyTorch'],
-    githubUrl: 'https://github.com/jztchl/realtime-weapon-detection',
+    githubUrl: 'https://github.com/kmvishn/realtime-weapon-detection',
     liveUrl: '#'
   }
 ];
@@ -194,7 +194,7 @@ export default function Projects() {
           transition={{ delay: 0.5 }}
           className="text-center mt-24"
         >
-          <Link href="https://github.com/jztchl?tab=repositories" target="_blank">
+          <Link href="https://github.com/kmvishn?tab=repositories" target="_blank">
             <Button 
               size="lg"
               className="icebrick text-white hover:text-cyan-200 hover:brightness-125 clip-corner-reverse transition-all px-12 py-8 font-mono font-black tracking-[0.2em] text-lg rounded-none"

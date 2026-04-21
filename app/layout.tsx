@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     'Kerala Developer',
     'Portfolio Website',
   ].join(', '),
-  authors: [{ name: 'Vishnu KM', url: 'https://github.com/jztchl' }],
+  authors: [{ name: 'Vishnu KM', url: 'https://github.com/kmvishn' }],
   creator: 'Vishnu KM',
   publisher: 'Vishnu KM',
   alternates: {
@@ -102,7 +102,7 @@ export default function RootLayout({
         url: "https://vishnukm.vercel.app",
         image: "https://vishnukm.vercel.app/favicons/favicon.svg",
         sameAs: [
-          "https://github.com/jztchl",
+          "https://github.com/kmvishn",
           "https://linkedin.com/in/kmvishnu",
           "mailto:kmvishnu625@gmail.com"
         ],
@@ -156,7 +156,7 @@ export default function RootLayout({
         url: "https://vishnukm.vercel.app",
         logo: "https://vishnukm.vercel.app/favicons/favicon.svg",
         sameAs: [
-          "https://github.com/jztchl",
+          "https://github.com/kmvishn",
           "https://linkedin.com/in/kmvishnu"
         ]
       }

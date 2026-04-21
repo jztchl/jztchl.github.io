@@ -77,7 +77,7 @@ export default function Footer() {
               </a>
               <div className="flex space-x-4 pt-2">
                 <a
-                  href="https://github.com/jztchl"
+                  href="https://github.com/kmvishn"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="icebrick p-3 clip-corner border-white/30 hover:border-white text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 shadow-md"
