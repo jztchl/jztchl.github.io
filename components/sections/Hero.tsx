@@ -60,22 +60,7 @@ export default function Hero() {
       {/* ══════════════════════════════════════════════════
           LAYER 1: TEXT BEHIND THE PERSON  
           ══════════════════════════════════════════════════ */}
-      <motion.div 
-        style={{ y: heroY, opacity: heroOpacity }}
-        className="absolute inset-0 flex flex-col items-center justify-center z-[1] pointer-events-none px-4"
-      >
-        {/* (SYS.ADMIN removed upon request) */}
 
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 0.08, scale: 1 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(6rem,20vw,16rem)] font-black text-white uppercase tracking-widest whitespace-nowrap select-none pointer-events-none drop-shadow-[0_0_50px_rgba(255,255,255,0.8)] mix-blend-overlay"
-        >
-          FROSTCODE
-        </motion.div>
-      </motion.div>
 
       {/* ══════════════════════════════════════════════════
           LAYER 2: THE HOLOGRAPHIC PERSON & RINGS

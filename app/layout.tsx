@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Image from 'next/image';
 import SnowBackground from '@/components/SnowBackground';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -169,16 +170,34 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
+        
+        {/* Resource hints for performance */}
+        <link rel="preload" href="/sonmarg.png" as="image" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://github.com" />
+        <link rel="dns-prefetch" href="https://linkedin.com" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       </head>
       <body className={`${inter.className} antialiased bg-slate-900 text-white min-h-screen relative`}>
-        {/* The beautiful Sonmarg background image */}
-        <div 
-          className="fixed inset-0 z-[-2] bg-[url('/sonmarg.png')] bg-cover bg-center bg-fixed transition-all"
-        />
+        {/* The beautiful Sonmarg background image - optimized */}
+        <div className="fixed inset-0 z-[-2] transition-all">
+          <Image
+            src="/sonmarg.png"
+            alt="Sonmarg landscape background"
+            fill
+            priority
+            quality={75}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAIAAgADASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8A8A"
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         {/* A premium glacier-blue dark overlay to ensure maximum contrast for white ice panels */}
         <div className="fixed inset-0 z-[-1] bg-gradient-to-b from-slate-950/70 via-slate-900/50 to-slate-950/90 backdrop-blur-[3px] mix-blend-multiply" />
         
